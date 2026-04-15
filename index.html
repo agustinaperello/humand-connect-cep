@@ -6,28 +6,23 @@
 <title>Cultural Engagement Pack · Humand Connect 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/event/perfil.png" type="image/png">
 <style>
 /* ============================================================
    Cultural Engagement Pack · Humand Connect 2026
-   Look & feel: replica del CultureLab (Humand design system)
    ============================================================ */
 
 :root{
-  /* Marca Humand */
   --h50:#f1f4fd; --h100:#dee5fb; --h200:#c5d4f8;
   --h400:#6f93eb; --h500:#496be3; --h600:#3851d8;
   --h700:#2f3fc6; --h800:#2c35a1; --h950:#1d204e;
-  /* Neutrales */
   --n50:#f5f6f8; --n100:#eeeef1; --n200:#dfe0e6;
   --n300:#cbcdd6; --n500:#aaaaba; --n800:#636271; --n950:#303036;
-  /* Estados */
   --green:#28c040; --green-l:#e6fbe9;
   --yellow:#f4c83f; --yellow-l:#fdf3d2;
   --red:#e74444; --red-l:#fde3e3;
   --purple:#886bff; --purple-l:#e9e8ff;
-  /* Sombras */
   --shadow-card:-1px 4px 8px 0px rgba(233,233,244,1);
   --shadow-hover:-1px 8px 16px 0px rgba(170,170,186,.45);
 }
@@ -38,415 +33,1078 @@ body{
   font:400 14px/1.4 'Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   letter-spacing:.2px;
   color:var(--n950);
-  background:var(--n50);
-  min-height:100vh;
   -webkit-font-smoothing:antialiased;
 }
 button{font-family:inherit;letter-spacing:.2px;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea,select{font-family:inherit;letter-spacing:.2px;color:inherit}
 h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
 
-/* ---------- Topbar ---------- */
-.topbar{
-  position:sticky; top:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 24px;
+/* ============================================================
+   PHONE SHELL
+   ============================================================ */
+.app-shell{
+  min-height:100vh;
+  background:linear-gradient(150deg,#ccd4ea 0%,#dce3f2 50%,#e4e9f5 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px 16px;
+}
+
+.phone-wrap{
+  position:relative;
+}
+
+.phone-frame{
+  width:393px;
+  height:min(852px,calc(100dvh - 48px));
+  background:#1c1c1e;
+  border-radius:55px;
+  padding:13px;
+  box-shadow:
+    0 0 0 1px #3a3a3c,
+    0 50px 100px rgba(0,0,0,.55),
+    0 20px 40px rgba(0,0,0,.3),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+  position:relative;
+}
+
+/* Side buttons */
+.phone-frame::before{
+  content:'';position:absolute;
+  left:-3px;top:124px;
+  width:3px;height:36px;
+  background:#3a3a3c;border-radius:2px 0 0 2px;
+  box-shadow:0 54px 0 #3a3a3c,0 108px 0 #3a3a3c;
+}
+.phone-frame::after{
+  content:'';position:absolute;
+  right:-3px;top:164px;
+  width:3px;height:72px;
+  background:#3a3a3c;border-radius:0 2px 2px 0;
+}
+
+.phone-screen{
+  width:100%;
+  height:100%;
   background:#fff;
+  border-radius:43px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+/* Dynamic island */
+.dynamic-island{
+  position:absolute;
+  top:13px;left:50%;
+  transform:translateX(-50%);
+  width:126px;height:37px;
+  background:#1c1c1e;
+  border-radius:20px;
+  z-index:30;
+}
+
+/* Status bar */
+.status-bar{
+  height:59px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:0 28px 8px;
+  flex-shrink:0;
+  background:#fff;
+}
+.status-time{
+  font-size:16px;font-weight:700;
+  letter-spacing:-.3px;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;
+}
+.status-icons{display:flex;align-items:center;gap:5px}
+.status-icons svg{display:block}
+
+/* App topbar */
+.app-topbar{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  padding:6px 20px 8px;
+  flex-shrink:0;
+  background:#fff;
+}
+.app-logo-text{
+  font-family:'Comfortaa',cursive;
+  font-size:22px;font-weight:700;
+  color:#182E7B;
+  letter-spacing:-.3px;
+  line-height:1;
+}
+.app-bell{
+  width:36px;height:36px;
+  border-radius:50%;
+  background:var(--n50);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.app-bell:hover{background:var(--n100)}
+
+/* Tab row */
+.app-tabs-row{
+  display:flex;align-items:center;
+  padding:8px 16px 10px;
+  gap:8px;
+  background:var(--n50);
   border-bottom:1px solid var(--n200);
-  height:64px;
+  flex-shrink:0;
 }
-.brand{display:flex;align-items:center;gap:12px}
-.brand-logo{display:block;height:32px;width:auto}
-.brand-tag{
+.app-tab-pill{
   display:inline-flex;align-items:center;gap:6px;
-  padding:3px 10px; border-radius:999px;
-  background:var(--h50); color:var(--h700);
-  font-size:11px; font-weight:600; letter-spacing:.4px; text-transform:uppercase;
-}
-.tabs{display:flex;gap:4px;background:var(--n100);padding:4px;border-radius:999px}
-.tab{
-  padding:8px 18px; border-radius:999px;
-  font-size:13px; font-weight:600; color:var(--n800);
-  transition:background .15s, color .15s;
-  display:inline-flex; align-items:center; gap:6px;
-}
-.tab:hover{color:var(--n950)}
-.tab.active{background:var(--h500); color:#fff; box-shadow:0 1px 3px rgba(73,107,227,.35)}
-.event-meta{
-  display:flex; align-items:center; gap:8px;
-  font-size:12px; color:var(--n800);
-}
-.event-meta strong{color:var(--n950); font-weight:600}
-.event-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px var(--green-l)}
-
-/* ---------- Layout views ---------- */
-.view{display:none; animation:fadeIn .25s ease}
-.view.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.container{max-width:1280px; margin:0 auto; padding:24px}
-
-/* ---------- Cards & primitives ---------- */
-.card{
-  background:#fff; border:1px solid var(--n200); border-radius:16px;
-  box-shadow:var(--shadow-card); padding:20px;
-}
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:12px 20px; border-radius:8px;
-  font-size:14px; font-weight:600;
-  transition:background .15s, transform .15s, box-shadow .15s, opacity .15s;
-}
-.btn-primary{background:var(--h500); color:#fff}
-.btn-primary:hover{background:var(--h600)}
-.btn-primary:disabled{background:var(--n200); color:var(--n500); cursor:not-allowed}
-.btn-ghost{background:#fff; color:var(--n800); border:1px solid var(--n200)}
-.btn-ghost:hover{border-color:var(--n300); color:var(--n950)}
-.btn-lg{padding:14px 28px; font-size:15px; border-radius:10px}
-
-/* =====================================================================
-   PULSO
-   ===================================================================== */
-.pulso-shell{
-  max-width:560px; margin:32px auto; padding:0 16px;
-}
-.pulso-card{
-  background:#fff; border:1px solid var(--n200); border-radius:16px;
-  box-shadow:var(--shadow-card); padding:32px 28px;
-  min-height:480px; display:flex; flex-direction:column;
-}
-.pulso-progress{
-  display:flex; align-items:center; gap:12px; margin-bottom:24px;
-}
-.pp-bar{flex:1; height:6px; background:var(--n100); border-radius:4px; overflow:hidden}
-.pp-fill{height:100%; background:var(--h500); border-radius:4px; transition:width .35s cubic-bezier(.32,.72,0,1); width:0%}
-.pp-step{font-size:12px; font-weight:600; color:var(--n800); white-space:nowrap}
-.pulso-step{flex:1; display:flex; flex-direction:column}
-.pulso-step h2{font-size:22px; line-height:1.3; margin-bottom:8px}
-.pulso-step .helper{color:var(--n800); font-size:13px; margin-bottom:24px}
-.pulso-actions{display:flex; justify-content:space-between; gap:12px; margin-top:24px}
-
-/* Welcome / success splash */
-.splash{
-  text-align:center; padding:24px 8px; flex:1;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-}
-.splash .emoji{font-size:64px; line-height:1; margin-bottom:16px}
-.splash h2{font-size:26px; margin-bottom:10px}
-.splash p{color:var(--n800); margin:0 0 24px; max-width:420px}
-
-/* Hero banner for splash screens */
-.splash-hero{
-  width:calc(100% + 56px); margin:-32px -28px 24px;
-  border-radius:15px 15px 0 0;
-  background:linear-gradient(135deg, #2c35a1 0%, #3851d8 40%, #6f93eb 100%);
-  padding:36px 24px 28px; text-align:center;
-}
-.splash-hero img{height:40px; margin-bottom:8px; filter:brightness(0) invert(1)}
-.splash-hero .hero-sub{color:rgba(255,255,255,.85); font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase}
-
-/* Emoji scale */
-.emoji-scale{display:flex; gap:8px; justify-content:space-between}
-.emoji-opt{
-  flex:1; background:var(--n50); border:2px solid transparent; border-radius:14px;
-  padding:18px 8px; text-align:center; transition:all .15s; cursor:pointer;
-}
-.emoji-opt:hover{background:var(--h50); border-color:var(--h200)}
-.emoji-opt.selected{background:var(--h50); border-color:var(--h500); box-shadow:0 0 0 4px rgba(73,107,227,.12)}
-.emoji-opt .e{font-size:36px; line-height:1; display:block; margin-bottom:6px}
-.emoji-opt .l{font-size:11px; color:var(--n800); font-weight:600}
-
-/* Radio options */
-.opt-list{display:flex; flex-direction:column; gap:10px}
-.opt{
-  display:flex; align-items:center; gap:12px;
-  padding:14px 16px; border:1.5px solid var(--n200); border-radius:12px;
-  background:#fff; transition:all .15s; cursor:pointer; text-align:left;
-  font-size:14px; font-weight:400; color:var(--n950);
-}
-.opt:hover{border-color:var(--h400); background:var(--h50)}
-.opt.selected{border-color:var(--h500); background:var(--h50); font-weight:600}
-.opt .radio{
-  width:18px; height:18px; border-radius:50%;
-  border:2px solid var(--n300); flex-shrink:0; position:relative;
+  padding:6px 14px;border-radius:999px;
+  font-size:13px;font-weight:600;
+  color:var(--n800);
+  background:transparent;
   transition:all .15s;
 }
-.opt.selected .radio{border-color:var(--h500)}
-.opt.selected .radio::after{
-  content:''; position:absolute; inset:3px; border-radius:50%; background:var(--h500);
+.app-tab-pill.active{
+  background:#fff;
+  color:var(--h700);
+  box-shadow:0 1px 4px rgba(0,0,0,.1);
+}
+.app-tab-gear{
+  margin-left:auto;
+  color:var(--n500);
+  padding:4px;
+  display:flex;align-items:center;
 }
 
-/* Scale 1-4 */
-.scale-list{display:flex; gap:8px}
+/* Scrollable body */
+.app-body{
+  flex:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  background:var(--n50);
+  scrollbar-width:none;
+}
+.app-body::-webkit-scrollbar{display:none}
+
+/* Greeting */
+.home-greeting{
+  padding:16px 20px 12px;
+  background:var(--n50);
+}
+.home-greeting h2{
+  font-size:19px;font-weight:700;
+  color:#182E7B;margin:0 0 2px;
+}
+.home-date{font-size:13px;color:var(--n800)}
+
+/* Humand-style list items (decorative) */
+.hm-card{
+  margin:0 12px 8px;
+  background:#fff;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.04);
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+  display:flex;align-items:center;
+  padding:14px 16px;gap:14px;
+}
+.hm-icon-wrap{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--h50);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.hm-icon-wrap svg{width:18px;height:18px;color:var(--h600)}
+.hm-body{flex:1}
+.hm-title{font-size:14px;font-weight:600;color:var(--n950)}
+.hm-sub{font-size:12px;color:var(--n800);margin-top:1px}
+.hm-chevron{color:var(--n300);flex-shrink:0}
+
+/* Feed blur — el fondo siempre es decorativo/no interactivo */
+.app-body{
+  filter:blur(2.5px);
+  pointer-events:none;
+  user-select:none;
+  flex:1;
+  overflow-y:hidden; /* no scroll en el blur decorativo */
+}
+
+/* Zona interactiva CEP — fuera del blur, sobre el feed */
+.cep-activity-zone{
+  flex-shrink:0;
+  background:#fff;
+  border-bottom:1px solid var(--n100);
+}
+
+/* Feed posts */
+.feed-post{
+  background:#fff;
+  border-bottom:1px solid var(--n100);
+  padding:14px 16px;
+}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.post-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--h100);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--h700);
+  flex-shrink:0;overflow:hidden;
+}
+.post-avatar img{width:100%;height:100%;object-fit:cover}
+.post-meta{flex:1}
+.post-name{font-size:13px;font-weight:700;color:var(--n950)}
+.post-time{font-size:11px;color:var(--n500);margin-top:1px}
+.post-more{color:var(--n300);padding:4px}
+.post-text{font-size:13px;color:var(--n950);line-height:1.5;margin-bottom:10px}
+.post-img{
+  width:calc(100% + 32px);margin:0 -16px 10px;
+  overflow:hidden;
+  line-height:0;
+}
+.post-img img{width:100%;height:auto;display:block;}
+.post-actions{
+  display:flex;align-items:center;gap:16px;
+  padding-top:8px;
+  border-top:1px solid var(--n100);
+}
+.post-action{
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;color:var(--n800);
+  padding:4px 0;
+}
+.post-action svg{width:16px;height:16px}
+.post-action-sep{flex:1}
+
+/* CEP activity cards — same style as hm-card, no heavy gradients */
+.cep-feed-banner{
+  padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  background:#fff;
+  border-bottom:1px solid var(--n100);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .12s;
+}
+.cep-feed-banner:active{background:var(--n50)}
+.cep-icon-wrap{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--h50);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.cep-icon-wrap svg{width:22px;height:22px;stroke:var(--h600)}
+.cep-icon-wrap.purple{background:var(--purple-l)}
+.cep-icon-wrap.purple svg{stroke:var(--purple)}
+.cep-feed-body{flex:1}
+.cep-feed-title{font-size:14px;font-weight:600;color:var(--n950);margin-bottom:2px}
+.cep-feed-sub{font-size:12px;color:var(--n800)}
+.cep-feed-arrow{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--n50);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--n500);
+}
+.cep-feed-arrow svg{width:14px;height:14px}
+
+/* Bottom nav */
+.bottom-nav{
+  height:82px;
+  border-top:1px solid rgba(0,0,0,.06);
+  display:flex;
+  align-items:flex-start;
+  padding-top:10px;
+  flex-shrink:0;
+  background:#fff;
+}
+.nav-item{
+  flex:1;
+  display:flex;flex-direction:column;
+  align-items:center;gap:3px;
+  color:var(--n500);
+  font-size:10px;font-weight:500;
+  padding:0;transition:color .15s;
+}
+.nav-item svg{width:24px;height:24px}
+.nav-item.active{color:var(--h600)}
+.nav-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--h500);margin-top:1px;
+}
+.home-indicator{
+  height:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;flex-shrink:0;
+}
+.home-indicator-bar{
+  width:134px;height:5px;
+  background:#c7c7cc;border-radius:3px;
+}
+
+/* FAB — white bubble with colored icon */
+.fab{
+  position:absolute;
+  bottom:98px;right:16px;
+  width:50px;height:50px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(73,107,227,.22),0 0 0 1px rgba(73,107,227,.1);
+  z-index:10;
+  transition:box-shadow .15s;
+}
+.fab:hover{box-shadow:0 4px 18px rgba(73,107,227,.3),0 0 0 1px rgba(73,107,227,.15)}
+.fab svg{width:22px;height:22px;stroke:var(--h600)}
+
+/* ============================================================
+   MODAL OVERLAY (within phone-screen) — tarjeta flotante centrada
+   ============================================================ */
+.modal-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0);
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px 16px;
+  pointer-events:none;
+  transition:background .25s;
+}
+.modal-overlay.open{
+  background:rgba(15,25,80,.28);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  pointer-events:all;
+}
+.modal-sheet{
+  background:#fff;
+  border-radius:20px;
+  width:100%;
+  max-height:82%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  box-shadow:0 20px 60px rgba(0,0,0,.22),0 4px 12px rgba(0,0,0,.1);
+  transform:scale(.92) translateY(8px);
+  opacity:0;
+  transition:transform .28s cubic-bezier(.32,.72,0,1),opacity .22s ease;
+}
+.modal-sheet::-webkit-scrollbar{display:none}
+.modal-overlay.open .modal-sheet{
+  transform:scale(1) translateY(0);
+  opacity:1;
+}
+
+.modal-handle-row{
+  position:sticky;top:0;
+  display:flex;align-items:center;
+  justify-content:space-between;
+  padding:16px 16px 8px;
+  background:#fff;z-index:1;
+}
+.modal-handle{display:none}
+.modal-close-btn{
+  margin-left:auto;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--n100);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:var(--n800);
+  border:none;cursor:pointer;
+  transition:background .15s;
+  flex-shrink:0;
+}
+.modal-close-btn:hover{background:var(--n200)}
+
+/* Cards inside modal — override standalone card styles */
+#pulsoCard.pulso-card,
+#triviaCard.trivia-card{
+  border:none;
+  box-shadow:none;
+  background:transparent;
+  border-radius:0;
+  min-height:unset;
+}
+
+/* ============================================================
+   PULSO (reused from original)
+   ============================================================ */
+.pulso-card{
+  background:#fff;border:1px solid var(--n200);border-radius:16px;
+  box-shadow:var(--shadow-card);padding:32px 28px;
+  min-height:480px;display:flex;flex-direction:column;
+}
+.pulso-progress{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.pp-bar{flex:1;height:6px;background:var(--n100);border-radius:4px;overflow:hidden}
+.pp-fill{height:100%;background:var(--h500);border-radius:4px;transition:width .35s cubic-bezier(.32,.72,0,1);width:0%}
+.pp-step{font-size:12px;font-weight:600;color:var(--n800);white-space:nowrap}
+.pulso-step{flex:1;display:flex;flex-direction:column}
+.pulso-step h2{font-size:20px;line-height:1.3;margin-bottom:8px}
+.pulso-step .helper{color:var(--n800);font-size:13px;margin-bottom:24px}
+.pulso-actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+
+.splash{text-align:center;padding:24px 8px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.splash .emoji{font-size:64px;line-height:1;margin-bottom:16px}
+.splash h2{font-size:24px;margin-bottom:10px}
+.splash p{color:var(--n800);margin:0 0 24px;max-width:400px;font-size:14px}
+
+.splash-hero{
+  width:calc(100% + 56px);margin:-32px -28px 24px;
+  border-radius:15px 15px 0 0;
+  background:linear-gradient(135deg,#2c35a1 0%,#3851d8 40%,#6f93eb 100%);
+  padding:32px 24px 24px;text-align:center;
+}
+.splash-hero img{height:36px;margin-bottom:6px;filter:brightness(0) invert(1)}
+.splash-hero .hero-sub{color:rgba(255,255,255,.85);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+.emoji-scale{display:flex;gap:5px;justify-content:space-between}
+.emoji-opt{
+  flex:1;background:var(--n50);border:2px solid transparent;border-radius:14px;
+  padding:12px 4px;text-align:center;transition:all .15s;cursor:pointer;
+}
+.emoji-opt:hover{background:var(--h50);border-color:var(--h200)}
+.emoji-opt.selected{border-color:var(--face-stroke,var(--h500));box-shadow:0 0 0 3px rgba(73,107,227,.12)}
+.emoji-opt .e{display:flex;justify-content:center;margin-bottom:6px}
+.emoji-opt .e svg{width:32px;height:32px;display:block;transition:transform .15s}
+.emoji-opt.selected .e svg{transform:scale(1.12)}
+.emoji-opt .l{font-size:10px;color:var(--n800);font-weight:600;line-height:1.3}
+
+.opt-list{display:flex;flex-direction:column;gap:8px}
+.opt{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border:1.5px solid var(--n200);border-radius:12px;
+  background:#fff;transition:all .15s;cursor:pointer;text-align:left;
+  font-size:14px;font-weight:400;color:var(--n950);
+}
+.opt:hover{border-color:var(--h400);background:var(--h50)}
+.opt.selected{
+  border-color:transparent;
+  background:linear-gradient(135deg,#5b86e5 0%,#36d1dc 100%);
+  color:#fff;font-weight:600;
+}
+.opt .radio{
+  width:18px;height:18px;border-radius:50%;
+  border:2px solid var(--n300);flex-shrink:0;position:relative;transition:all .15s;
+}
+.opt.selected .radio{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.15)}
+.opt.selected .radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:#fff}
+/* Checkmark badge on selected option */
+.opt.selected::after{
+  content:'✓';
+  margin-left:auto;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;
+  flex-shrink:0;
+}
+
+.scale-list{display:flex;gap:8px}
 .scale-opt{
-  flex:1; background:var(--n50); border:2px solid transparent; border-radius:12px;
-  padding:14px 8px; text-align:center; cursor:pointer; transition:all .15s;
+  flex:1;background:var(--n50);border:2px solid transparent;border-radius:12px;
+  padding:12px 6px;text-align:center;cursor:pointer;transition:all .15s;
 }
-.scale-opt:hover{background:var(--h50); border-color:var(--h200)}
-.scale-opt.selected{background:var(--h50); border-color:var(--h500)}
-.scale-opt .num{font-size:24px; font-weight:600; color:var(--h700); display:block}
-.scale-opt .lbl{font-size:11px; color:var(--n800); margin-top:4px; font-weight:600}
+.scale-opt:hover{background:var(--h50);border-color:var(--h200)}
+.scale-opt.selected{background:var(--h50);border-color:var(--h500)}
+.scale-opt .num{font-size:22px;font-weight:600;color:var(--h700);display:block}
+.scale-opt .lbl{font-size:10px;color:var(--n800);margin-top:3px;font-weight:600}
 
-/* Textarea */
 .ta{
-  width:100%; min-height:120px; padding:12px 14px;
-  border:1.5px solid var(--n200); border-radius:12px;
-  font-size:14px; line-height:1.5; color:var(--n950);
-  resize:vertical; transition:border-color .15s, box-shadow .15s;
+  width:100%;min-height:100px;padding:12px 14px;
+  border:1.5px solid var(--n200);border-radius:12px;
+  font-size:14px;line-height:1.5;color:var(--n950);
+  resize:vertical;transition:border-color .15s,box-shadow .15s;
 }
-.ta:focus{outline:none; border-color:var(--h500); box-shadow:0 0 0 3px rgba(73,107,227,.12)}
+.ta:focus{outline:none;border-color:var(--h500);box-shadow:0 0 0 3px rgba(73,107,227,.12)}
 
-/* =====================================================================
-   DASHBOARD
-   ===================================================================== */
-.dash-header{
-  display:flex; justify-content:space-between; align-items:center;
-  margin-bottom:20px; flex-wrap:wrap; gap:12px;
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 20px;border-radius:8px;
+  font-size:14px;font-weight:600;
+  transition:background .15s,transform .15s,box-shadow .15s,opacity .15s;
 }
+.btn-primary{background:var(--h500);color:#fff}
+.btn-primary:hover{background:var(--h600)}
+.btn-primary:disabled{background:var(--n200);color:var(--n500);cursor:not-allowed}
+.btn-ghost{background:#fff;color:var(--n800);border:1px solid var(--n200)}
+.btn-ghost:hover{border-color:var(--n300);color:var(--n950)}
+.btn-lg{padding:13px 24px;font-size:15px;border-radius:10px}
+
+/* ============================================================
+   TRIVIA (reused from original)
+   ============================================================ */
+.trivia-card{
+  background:#fff;border:1px solid var(--n200);border-radius:16px;
+  box-shadow:var(--shadow-card);padding:32px 28px;
+  min-height:520px;display:flex;flex-direction:column;
+}
+.trivia-top{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;
+  font-size:12px;color:var(--n800);font-weight:600;
+}
+.trivia-step{display:inline-flex;align-items:center;gap:6px}
+.trivia-score{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;background:var(--h50);color:var(--h700);
+  border-radius:999px;font-size:12px;font-weight:600;
+}
+.timer-track{height:6px;background:var(--n100);border-radius:4px;overflow:hidden;margin-bottom:24px}
+.timer-fill{height:100%;background:var(--h500);border-radius:4px;transition:width 1s linear,background-color .3s}
+.timer-fill.warn{background:var(--yellow)}
+.timer-fill.danger{background:var(--red)}
+.timer-num{font-variant-numeric:tabular-nums}
+.q-text{font-size:18px;font-weight:600;line-height:1.35;margin-bottom:20px;min-height:48px}
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-opt{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;border:1.5px solid var(--n200);border-radius:12px;
+  background:#fff;cursor:pointer;transition:all .15s;text-align:left;
+  font-size:14px;font-weight:500;
+}
+.q-opt:hover:not(:disabled){border-color:var(--h400);background:var(--h50)}
+.q-opt:disabled{cursor:not-allowed}
+.q-opt .letter{
+  width:28px;height:28px;border-radius:8px;
+  background:var(--n100);color:var(--n800);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;font-size:13px;flex-shrink:0;transition:all .15s;
+}
+.q-opt:hover:not(:disabled) .letter{background:var(--h100);color:var(--h700)}
+.q-opt.correct{border-color:var(--green);background:var(--green-l);animation:popCorrect .35s ease}
+.q-opt.correct .letter{background:var(--green);color:#fff}
+.q-opt.wrong{border-color:var(--red);background:var(--red-l);animation:shake .35s ease}
+.q-opt.wrong .letter{background:var(--red);color:#fff}
+.q-opt.reveal-correct{border-color:var(--green);background:var(--green-l)}
+.q-opt.reveal-correct .letter{background:var(--green);color:#fff}
+@keyframes popCorrect{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.trivia-result{text-align:center;padding:8px}
+.trivia-result .big{font-size:48px;font-weight:600;color:var(--h700);margin:8px 0}
+.trivia-result .lbl{font-size:13px;color:var(--n800);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.trivia-rank{margin-top:20px;background:var(--n50);border-radius:12px;padding:14px}
+.trivia-rank h4{font-size:12px;color:var(--n800);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.tr-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--n200)}
+.tr-row:first-of-type{border-top:none}
+.tr-pos{width:24px;height:24px;border-radius:50%;background:#fff;border:1.5px solid var(--n200);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;color:var(--n800)}
+.tr-row.gold .tr-pos{background:#fff5d2;border-color:#e5b74e;color:#8a6418}
+.tr-row.silver .tr-pos{background:#eef0f4;border-color:#bfc6d2;color:#5b6373}
+.tr-row.bronze .tr-pos{background:#f7e5d6;border-color:#d8a37a;color:#7a4a26}
+.tr-name{flex:1;font-size:13px;font-weight:600}
+.tr-score{font-size:13px;font-weight:600;color:var(--h700);font-variant-numeric:tabular-nums}
+
+.fi{
+  width:100%;padding:11px 14px;
+  border:1.5px solid var(--n200);border-radius:10px;
+  font-size:14px;transition:border-color .15s,box-shadow .15s;
+}
+.fi:focus{outline:none;border-color:var(--h500);box-shadow:0 0 0 3px rgba(73,107,227,.12)}
+
+/* ============================================================
+   DASHBOARD SHELL (full page, outside phone)
+   ============================================================ */
+.dash-shell{
+  min-height:100vh;
+  background:var(--n50);
+  display:none;
+}
+.dash-shell.active{display:flex}
+
+/* Sidebar */
+.dash-sidebar{
+  width:240px;flex-shrink:0;
+  background:#fff;
+  border-right:1px solid var(--n200);
+  height:100vh;
+  position:sticky;top:0;
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+  scrollbar-width:none;
+}
+.dash-sidebar::-webkit-scrollbar{display:none}
+.sidebar-header{
+  padding:18px 16px 14px;
+  border-bottom:1px solid var(--n100);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.sidebar-logo{
+  font-family:'Comfortaa',cursive;
+  font-size:20px;font-weight:700;
+  color:#182E7B;letter-spacing:-.3px;
+}
+.sidebar-nav{padding:8px 8px;flex:1}
+.sidebar-section{
+  font-size:10px;font-weight:700;color:var(--n500);
+  text-transform:uppercase;letter-spacing:.7px;
+  padding:12px 8px 4px;
+}
+.sidebar-item{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 10px;border-radius:8px;
+  font-size:13px;font-weight:500;color:var(--n950);
+  cursor:pointer;transition:background .12s;
+  margin-bottom:1px;
+}
+.sidebar-item:hover{background:var(--n50)}
+.sidebar-item.active{
+  background:var(--h50);color:var(--h700);font-weight:600;
+}
+.sidebar-item svg{
+  width:17px;height:17px;flex-shrink:0;
+  stroke:var(--n800);fill:none;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
+}
+.sidebar-item.active svg{stroke:var(--h600)}
+.sidebar-item .si-arrow{margin-left:auto;stroke:var(--n300)}
+
+/* Dashboard main area */
+.dash-main{flex:1;overflow-y:auto;min-width:0}
+
+.dash-topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 24px;
+  background:#fff;border-bottom:1px solid var(--n200);
+  height:64px;
+}
+.dash-back{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:8px;
+  background:var(--n100);border:none;cursor:pointer;
+  font-size:14px;font-weight:600;color:var(--n950);
+  transition:background .15s;
+}
+.dash-back:hover{background:var(--n200)}
+
+.container{max-width:1280px;margin:0 auto;padding:24px}
+
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
 .dash-header h1{font-size:24px}
-.dash-header .sub{color:var(--n800); font-size:13px; margin-top:4px}
+.dash-header .sub{color:var(--n800);font-size:13px;margin-top:4px}
 .live-badge{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:6px 12px; border-radius:999px;
-  background:var(--green-l); color:#1a8c2e;
-  font-size:12px; font-weight:600; letter-spacing:.5px; text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 12px;border-radius:999px;
+  background:var(--green-l);color:#1a8c2e;
+  font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
 }
-.live-dot{
-  width:8px; height:8px; border-radius:50%; background:var(--green);
-  animation:livePulse 1.6s ease-in-out infinite;
-}
-@keyframes livePulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(40,192,64,.6)}
-  50%{box-shadow:0 0 0 8px rgba(40,192,64,0)}
-}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:livePulse 1.6s ease-in-out infinite}
+@keyframes livePulse{0%,100%{box-shadow:0 0 0 0 rgba(40,192,64,.6)}50%{box-shadow:0 0 0 8px rgba(40,192,64,0)}}
 
-.kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px}
+.card{background:#fff;border:1px solid var(--n200);border-radius:16px;box-shadow:var(--shadow-card);padding:20px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
 .kpi{padding:18px 20px}
-.kpi .label{font-size:11px; font-weight:600; color:var(--n800); text-transform:uppercase; letter-spacing:.6px}
-.kpi .value{font-size:30px; font-weight:600; line-height:1.1; margin-top:8px; color:var(--n950); letter-spacing:-.02em}
+.kpi .label{font-size:11px;font-weight:600;color:var(--n800);text-transform:uppercase;letter-spacing:.6px}
+.kpi .value{font-size:30px;font-weight:600;line-height:1.1;margin-top:8px;color:var(--n950);letter-spacing:-.02em}
 .kpi .value.small{font-size:18px}
-.kpi .delta{font-size:12px; color:var(--n800); margin-top:4px}
-.kpi .delta strong{color:var(--h600); font-weight:600}
+.kpi .delta{font-size:12px;color:var(--n800);margin-top:4px}
+.kpi .delta strong{color:var(--h600);font-weight:600}
 
-.dash-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
-.chart-card h3{font-size:14px; margin-bottom:4px}
-.chart-card .csub{font-size:12px; color:var(--n800); margin-bottom:16px}
+.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.chart-card h3{font-size:14px;margin-bottom:4px}
+.chart-card .csub{font-size:12px;color:var(--n800);margin-bottom:16px}
 
-/* Horizontal bars */
-.bars{display:flex; flex-direction:column; gap:10px}
-.bar-row{display:flex; align-items:center; gap:12px}
-.bar-label{flex:0 0 160px; font-size:13px; color:var(--n950); display:flex; align-items:center; gap:8px}
-.bar-label .ico{font-size:18px; line-height:1}
-.bar-track{flex:1; height:10px; background:var(--n100); border-radius:6px; overflow:hidden; position:relative}
-.bar-fill{
-  height:100%; background:var(--h500); border-radius:6px;
-  transition:width .5s cubic-bezier(.32,.72,0,1);
-}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:flex;align-items:center;gap:12px}
+.bar-label{flex:0 0 160px;font-size:13px;color:var(--n950);display:flex;align-items:center;gap:8px}
+.bar-label .ico{font-size:18px;line-height:1}
+.bar-track{flex:1;height:10px;background:var(--n100);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;background:var(--h500);border-radius:6px;transition:width .5s cubic-bezier(.32,.72,0,1)}
 .bar-fill.green{background:var(--green)}
 .bar-fill.yellow{background:var(--yellow)}
 .bar-fill.purple{background:var(--purple)}
 .bar-fill.h400{background:var(--h400)}
-.bar-meta{flex:0 0 70px; text-align:right; font-size:12px; color:var(--n800); font-variant-numeric:tabular-nums}
-.bar-meta strong{color:var(--n950); font-weight:600}
+.bar-meta{flex:0 0 70px;text-align:right;font-size:12px;color:var(--n800);font-variant-numeric:tabular-nums}
+.bar-meta strong{color:var(--n950);font-weight:600}
 
-/* Speakers ranking */
-.rank-list{display:flex; flex-direction:column; gap:8px}
-.rank-row{
-  display:flex; align-items:center; gap:12px; padding:10px 12px;
-  border-radius:10px; background:var(--n50); transition:background .15s;
-}
-.rank-row.first{background:linear-gradient(90deg, var(--h50), var(--n50))}
-.rank-pos{
-  width:28px; height:28px; border-radius:50%;
-  background:#fff; border:1.5px solid var(--n200);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:600; font-size:13px; color:var(--n800); flex-shrink:0;
-}
-.rank-row.first .rank-pos{background:var(--h500); color:#fff; border-color:var(--h500)}
-.rank-name{flex:1; font-size:13px; font-weight:600}
-.rank-bar{flex:0 0 90px; height:6px; background:var(--n100); border-radius:4px; overflow:hidden}
-.rank-bar-fill{height:100%; background:var(--h500); border-radius:4px}
-.rank-row.first .rank-bar-fill{background:var(--h500)}
-.rank-pct{flex:0 0 44px; text-align:right; font-size:12px; font-weight:600; color:var(--n950); font-variant-numeric:tabular-nums}
+.rank-list{display:flex;flex-direction:column;gap:8px}
+.rank-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;background:var(--n50);transition:background .15s}
+.rank-row.first{background:linear-gradient(90deg,var(--h50),var(--n50))}
+.rank-pos{width:28px;height:28px;border-radius:50%;background:#fff;border:1.5px solid var(--n200);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:var(--n800);flex-shrink:0}
+.rank-row.first .rank-pos{background:var(--h500);color:#fff;border-color:var(--h500)}
+.rank-name{flex:1;font-size:13px;font-weight:600}
+.rank-bar{flex:0 0 90px;height:6px;background:var(--n100);border-radius:4px;overflow:hidden}
+.rank-bar-fill{height:100%;background:var(--h500);border-radius:4px}
+.rank-pct{flex:0 0 44px;text-align:right;font-size:12px;font-weight:600;color:var(--n950);font-variant-numeric:tabular-nums}
 
-/* Comments stream */
-.cmt-list{display:flex; flex-direction:column; gap:10px; max-height:340px; overflow-y:auto; padding-right:4px}
-.cmt{
-  padding:12px 14px; background:var(--n50); border-radius:12px;
-  border-left:3px solid var(--h400);
-  animation:cmtIn .35s cubic-bezier(.32,.72,0,1);
-}
-@keyframes cmtIn{from{opacity:0; transform:translateX(-8px)}to{opacity:1; transform:none}}
-.cmt-text{font-size:13px; line-height:1.45; color:var(--n950)}
-.cmt-time{font-size:11px; color:var(--n500); margin-top:6px}
-.cmt-empty{font-size:13px; color:var(--n500); text-align:center; padding:24px 0}
+.cmt-list{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow-y:auto;padding-right:4px}
+.cmt{padding:12px 14px;background:var(--n50);border-radius:12px;border-left:3px solid var(--h400);animation:cmtIn .35s cubic-bezier(.32,.72,0,1)}
+@keyframes cmtIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.cmt-text{font-size:13px;line-height:1.45;color:var(--n950)}
+.cmt-time{font-size:11px;color:var(--n500);margin-top:6px}
+.cmt-empty{font-size:13px;color:var(--n500);text-align:center;padding:24px 0}
 
-.empty-state{
-  padding:48px 24px; text-align:center; color:var(--n500);
-}
-.empty-state .e{font-size:40px; margin-bottom:8px}
-.empty-state .t{font-weight:600; color:var(--n800); margin-bottom:4px}
-
-/* =====================================================================
-   TRIVIA
-   ===================================================================== */
-.trivia-shell{max-width:640px; margin:32px auto; padding:0 16px}
-.trivia-card{
-  background:#fff; border:1px solid var(--n200); border-radius:16px;
-  box-shadow:var(--shadow-card); padding:32px 28px;
-  min-height:520px; display:flex; flex-direction:column;
-}
-.trivia-top{
-  display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;
-  font-size:12px; color:var(--n800); font-weight:600;
-}
-.trivia-step{display:inline-flex; align-items:center; gap:6px}
-.trivia-score{
-  display:inline-flex; align-items:center; gap:6px;
-  padding:4px 10px; background:var(--h50); color:var(--h700);
-  border-radius:999px; font-size:12px; font-weight:600;
-}
-.timer-track{
-  height:6px; background:var(--n100); border-radius:4px; overflow:hidden;
-  margin-bottom:24px;
-}
-.timer-fill{
-  height:100%; background:var(--h500); border-radius:4px;
-  transition:width 1s linear, background-color .3s;
-}
-.timer-fill.warn{background:var(--yellow)}
-.timer-fill.danger{background:var(--red)}
-.timer-num{font-variant-numeric:tabular-nums}
-.q-text{font-size:20px; font-weight:600; line-height:1.35; margin-bottom:24px; min-height:56px}
-.q-options{display:flex; flex-direction:column; gap:10px}
-.q-opt{
-  display:flex; align-items:center; gap:12px;
-  padding:16px 18px; border:1.5px solid var(--n200); border-radius:12px;
-  background:#fff; cursor:pointer; transition:all .15s; text-align:left;
-  font-size:14px; font-weight:500;
-}
-.q-opt:hover:not(:disabled){border-color:var(--h400); background:var(--h50)}
-.q-opt:disabled{cursor:not-allowed}
-.q-opt .letter{
-  width:28px; height:28px; border-radius:8px;
-  background:var(--n100); color:var(--n800);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:600; font-size:13px; flex-shrink:0;
-  transition:all .15s;
-}
-.q-opt:hover:not(:disabled) .letter{background:var(--h100); color:var(--h700)}
-.q-opt.correct{border-color:var(--green); background:var(--green-l); animation:popCorrect .35s ease}
-.q-opt.correct .letter{background:var(--green); color:#fff}
-.q-opt.wrong{border-color:var(--red); background:var(--red-l); animation:shake .35s ease}
-.q-opt.wrong .letter{background:var(--red); color:#fff}
-.q-opt.reveal-correct{border-color:var(--green); background:var(--green-l)}
-.q-opt.reveal-correct .letter{background:var(--green); color:#fff}
-@keyframes popCorrect{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-
-.trivia-result{text-align:center; padding:8px}
-.trivia-result .big{font-size:48px; font-weight:600; color:var(--h700); margin:8px 0}
-.trivia-result .lbl{font-size:13px; color:var(--n800); text-transform:uppercase; letter-spacing:.6px; font-weight:600}
-.trivia-rank{
-  margin-top:24px; background:var(--n50); border-radius:12px; padding:16px;
-}
-.trivia-rank h4{font-size:13px; color:var(--n800); text-transform:uppercase; letter-spacing:.6px; margin-bottom:12px}
-.tr-row{display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--n200)}
-.tr-row:first-of-type{border-top:none}
-.tr-pos{
-  width:24px; height:24px; border-radius:50%;
-  background:#fff; border:1.5px solid var(--n200);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:600; font-size:12px; color:var(--n800);
-}
-.tr-row.gold .tr-pos{background:#fff5d2; border-color:#e5b74e; color:#8a6418}
-.tr-row.silver .tr-pos{background:#eef0f4; border-color:#bfc6d2; color:#5b6373}
-.tr-row.bronze .tr-pos{background:#f7e5d6; border-color:#d8a37a; color:#7a4a26}
-.tr-name{flex:1; font-size:13px; font-weight:600}
-.tr-score{font-size:13px; font-weight:600; color:var(--h700); font-variant-numeric:tabular-nums}
-
-.fi{
-  width:100%; padding:12px 14px;
-  border:1.5px solid var(--n200); border-radius:10px;
-  font-size:14px; transition:border-color .15s, box-shadow .15s;
-}
-.fi:focus{outline:none; border-color:var(--h500); box-shadow:0 0 0 3px rgba(73,107,227,.12)}
-
-/* ---------- Footer ---------- */
-.app-footer{
-  text-align:center; padding:24px; font-size:12px; color:var(--n500);
-}
-.app-footer a{color:var(--h600); text-decoration:none; font-weight:600}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 980px){
+@media(max-width:980px){
   .kpi-grid{grid-template-columns:repeat(2,1fr)}
   .dash-grid{grid-template-columns:1fr}
-  .topbar{padding:12px 16px}
-  .event-meta{display:none}
-  .container{padding:16px}
-}
-@media (max-width: 600px){
-  .topbar{flex-wrap:wrap; height:auto; gap:10px; padding:10px 14px}
-  .tabs{order:3; width:100%; justify-content:center}
-  .kpi-grid{grid-template-columns:1fr 1fr}
-  .bar-label{flex-basis:120px; font-size:12px}
-  .pulso-card,.trivia-card{padding:24px 20px}
-  .pulso-step h2,.q-text{font-size:18px}
-  .emoji-opt .e{font-size:30px}
-  .scale-opt .num{font-size:20px}
 }
 
-/* ---------- Conexión / status ---------- */
+/* Toast */
 .toast{
-  position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-  background:var(--n950); color:#fff; padding:10px 18px; border-radius:999px;
-  font-size:13px; font-weight:600; box-shadow:0 8px 24px rgba(0,0,0,.2);
-  opacity:0; pointer-events:none; transition:opacity .25s, transform .25s;
-  z-index:100;
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:var(--n950);color:#fff;padding:10px 18px;border-radius:999px;
+  font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+  z-index:9999;
 }
-.toast.show{opacity:1; transform:translateX(-50%) translateY(-4px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
 .toast.error{background:var(--red)}
 .toast.success{background:var(--green)}
+
+/* Splash icon — replaces big emoji in modal splash screens */
+.splash-icon{
+  width:72px;height:72px;border-radius:20px;
+  background:var(--h50);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+}
+.splash-icon svg{width:36px;height:36px;stroke:var(--h600)}
+.splash-icon.purple{background:var(--purple-l)}
+.splash-icon.purple svg{stroke:var(--purple)}
+.splash-icon.green{background:var(--green-l)}
+.splash-icon.green svg{stroke:var(--green)}
+.result-icon{
+  width:80px;height:80px;border-radius:24px;
+  background:var(--h50);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;
+}
+.result-icon svg{width:40px;height:40px;stroke:var(--h600)}
+.result-icon.gold{background:#fff5d2}
+.result-icon.gold svg{stroke:#c8960c}
+.result-icon.ok{background:var(--green-l)}
+.result-icon.ok svg{stroke:var(--green)}
+.result-icon.mid{background:var(--h50)}
+.result-icon.mid svg{stroke:var(--h600)}
+.result-icon.low{background:var(--n100)}
+.result-icon.low svg{stroke:var(--n800)}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<!-- ================== TOPBAR ================== -->
-<header class="topbar">
-  <div class="brand">
-    <img src="assets/event/logo nuevo.png" alt="humand AI Connect" class="brand-logo">
-  </div>
-  <nav class="tabs" role="tablist">
-    <button class="tab active" data-tab="pulso" role="tab">💛 Pulso</button>
-    <button class="tab" data-tab="dashboard" role="tab">📊 Dashboard</button>
-    <button class="tab" data-tab="trivia" role="tab">⚡ Trivia</button>
-  </nav>
-  <div class="event-meta">
-    <span class="event-dot"></span>
-    <span><strong>Humand AI Connect</strong> · Jue 16 Abr · Yacht Club Puerto Madero</span>
-  </div>
-</header>
+<!-- ============================================================
+     APP SHELL — phone frame con la Humand app simulada
+     ============================================================ -->
+<div id="appShell" class="app-shell">
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-screen">
 
-<!-- ================== PULSO ================== -->
-<section id="view-pulso" class="view active">
-  <div class="pulso-shell">
-    <div class="pulso-card" id="pulsoCard"></div>
-  </div>
-</section>
+        <!-- Dynamic island -->
+        <div class="dynamic-island"></div>
 
-<!-- ================== DASHBOARD ================== -->
-<section id="view-dashboard" class="view">
+        <!-- Status bar -->
+        <div class="status-bar">
+          <span class="status-time" id="statusTime">9:41</span>
+          <div class="status-icons">
+            <!-- Signal -->
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+              <rect x="0" y="6" width="3" height="6" rx="1" fill="#1c1c1e"/>
+              <rect x="4.5" y="4" width="3" height="8" rx="1" fill="#1c1c1e"/>
+              <rect x="9" y="2" width="3" height="10" rx="1" fill="#1c1c1e"/>
+              <rect x="13.5" y="0" width="3" height="12" rx="1" fill="#1c1c1e"/>
+            </svg>
+            <!-- WiFi -->
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+              <path d="M8 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="#1c1c1e"/>
+              <path d="M3.5 6.5a6.5 6.5 0 0 1 9 0" stroke="#1c1c1e" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M1 4A10 10 0 0 1 15 4" stroke="#1c1c1e" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <!-- Battery -->
+            <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+              <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#1c1c1e" stroke-opacity=".35"/>
+              <rect x="1.5" y="1.5" width="18" height="9" rx="2.5" fill="#1c1c1e"/>
+              <path d="M23 4v4a2 2 0 0 0 0-4Z" fill="#1c1c1e" fill-opacity=".4"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- App topbar -->
+        <div class="app-topbar">
+          <span class="app-logo-text">humand</span>
+          <button class="app-bell" aria-label="Notificaciones">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#182E7B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Muro tabs — igual que la app real -->
+        <div class="app-tabs-row">
+          <button class="app-tab-pill active">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Muro
+          </button>
+          <button class="app-tab-pill">Grupos</button>
+          <button class="app-tab-pill">Noticias</button>
+          <button class="app-tab-pill">Marketplace</button>
+        </div>
+
+        <!-- Zona CEP interactiva — fuera del blur -->
+        <div class="cep-activity-zone">
+          <div class="cep-feed-banner" id="openPulso">
+            <div class="cep-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12h6M9 16h4"/></svg>
+            </div>
+            <div class="cep-feed-body">
+              <div class="cep-feed-title">Pulso del evento</div>
+              <div class="cep-feed-sub">Contanos cómo te sentís hoy · Es anónimo</div>
+            </div>
+            <div class="cep-feed-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+          <div class="cep-feed-banner" id="openTrivia">
+            <div class="cep-icon-wrap purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="cep-feed-body">
+              <div class="cep-feed-title">Trivia</div>
+              <div class="cep-feed-sub">8 preguntas · 15 seg por pregunta</div>
+            </div>
+            <div class="cep-feed-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feed decorativo — blureado, simula la app real detrás -->
+        <div class="app-body" id="appBody">
+
+          <!-- Post 1 -->
+          <div class="feed-post">
+            <div class="post-header">
+              <div class="post-avatar">
+                <img src="assets/event/Logo_Humand.png" alt="Humand">
+              </div>
+              <div class="post-meta">
+                <div class="post-name">Humand</div>
+                <div class="post-time">hace 1h · 🌐</div>
+              </div>
+              <button class="post-more">···</button>
+            </div>
+            <div class="post-text">¡Hoy es un día histórico para el Employee Experience en LATAM! 🚀 Bienvenidos a <strong>Humand Connect 2026</strong> — el encuentro más grande de cultura organizacional de la región.</div>
+            <div class="post-img">
+              <img src="assets/event/Cover-Cultural Pack.png" alt="Humand Connect 2026">
+            </div>
+            <div class="post-actions">
+              <button class="post-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                128
+              </button>
+              <button class="post-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                34 comentarios
+              </button>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="feed-post">
+            <div class="post-header">
+              <div class="post-avatar" style="background:var(--green-l);color:#1a8c2e">MG</div>
+              <div class="post-meta">
+                <div class="post-name">María González</div>
+                <div class="post-time">hace 2h · 👥 Cultura & RRHH</div>
+              </div>
+              <button class="post-more">···</button>
+            </div>
+            <div class="post-text">Increíble el nivel de los speakers de este año en el Connect 🙌 Patricia Jebsen y Guillermo Barros Schelotto en el mismo evento... imperdible.</div>
+            <div class="post-actions">
+              <button class="post-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                47
+              </button>
+              <button class="post-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                15 comentarios
+              </button>
+            </div>
+          </div>
+
+          <!-- Post 3 -->
+          <div class="feed-post">
+            <div class="post-header">
+              <div class="post-avatar" style="background:var(--purple-l);color:var(--purple)">HR</div>
+              <div class="post-meta">
+                <div class="post-name">RRHH · Organización</div>
+                <div class="post-time">hace 3h</div>
+              </div>
+              <button class="post-more">···</button>
+            </div>
+            <div class="post-text">Recordá completar la encuesta de pulso que está disponible hoy en la app. ¡Tu opinión construye la cultura de mañana! 💛</div>
+            <div class="post-img" style="height:120px;background:linear-gradient(135deg,var(--h800),var(--h500))">
+              <img src="assets/event/Cover-People Experience.png" alt="">
+            </div>
+            <div class="post-actions">
+              <button class="post-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                92
+              </button>
+              <button class="post-action">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                8 comentarios
+              </button>
+            </div>
+          </div>
+
+          <div style="height:16px"></div>
+        </div><!-- /app-body -->
+
+        <!-- FAB dashboard — burbuja blanca con ícono Humand -->
+        <button class="fab" id="openDashboard" aria-label="Dashboard" title="Ver Dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+          </svg>
+        </button>
+
+        <!-- Modal overlay (inside phone-screen) -->
+        <div class="modal-overlay" id="modalOverlay">
+          <div class="modal-sheet" id="modalSheet">
+            <div class="modal-handle-row">
+              <div class="modal-handle"></div>
+              <button class="modal-close-btn" id="modalClose" aria-label="Cerrar">✕</button>
+            </div>
+            <!-- Pulso content -->
+            <div id="pulsoCard" class="pulso-card" style="display:none"></div>
+            <!-- Trivia content -->
+            <div id="triviaCard" class="trivia-card" style="display:none"></div>
+          </div>
+        </div>
+
+        <!-- Bottom nav — igual que app real -->
+        <div class="bottom-nav">
+          <button class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Inicio</span>
+            <div class="nav-dot"></div>
+          </button>
+          <button class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Chats</span>
+          </button>
+          <button class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Apps</span>
+          </button>
+          <button class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Reco.</span>
+          </button>
+          <button class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Perfil</span>
+          </button>
+        </div>
+
+        <!-- iOS home indicator -->
+        <div class="home-indicator"><div class="home-indicator-bar"></div></div>
+
+      </div><!-- /phone-screen -->
+    </div><!-- /phone-frame -->
+  </div><!-- /phone-wrap -->
+</div><!-- /app-shell -->
+
+
+<!-- ============================================================
+     DASHBOARD SHELL — pantalla web completa
+     ============================================================ -->
+<div id="dashShell" class="dash-shell">
+
+  <!-- Sidebar Humand Admin -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">humand</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-item active">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+        Estadísticas
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Engagement
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Usuarios
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><circle cx="19" cy="8" r="3"/><path d="M23 21v-1a4 4 0 0 0-3-3.87"/></svg>
+        Grupos
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        Segmentación
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Regiones y sedes
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Horarios laborales
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Control de asistencia
+        <svg class="si-arrow" viewBox="0 0 24 24" style="width:14px;height:14px"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Noticias
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Librerías de conocimiento
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12h6M9 16h4"/></svg>
+        Formularios y Trámites
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
+        Encuestas
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Trivia
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        Reconocimientos
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main dashboard area -->
+  <div class="dash-main">
+  <div class="dash-topbar">
+    <button class="dash-back" id="dashBack">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver a la app
+    </button>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-family:'Comfortaa',cursive;font-size:18px;font-weight:700;color:#182E7B">humand</span>
+      <span style="font-size:12px;color:var(--n800);font-weight:600">Humand AI Connect 2026</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="live-badge"><span class="live-dot"></span> En vivo</span>
+      <span style="padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--n200);font-size:12px;color:var(--n800);font-weight:600">
+        <span id="dashTotal">0</span> respuestas
+      </span>
+    </div>
+  </div>
+
   <div class="container">
     <div class="dash-header">
       <div>
         <h1>Pulso del evento</h1>
         <div class="sub">Lo que están sintiendo los asistentes en tiempo real</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px">
-        <span class="live-badge"><span class="live-dot"></span> En vivo</span>
-        <span class="kpi" style="padding:6px 14px; border-radius:999px; background:#fff; border:1px solid var(--n200); font-size:12px; color:var(--n800); font-weight:600">
-          <span id="dashTotal">0</span> respuestas
-        </span>
       </div>
     </div>
 
@@ -497,18 +1155,9 @@ h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
       </div>
     </div>
   </div>
-</section>
+</div><!-- /dash-main -->
 
-<!-- ================== TRIVIA ================== -->
-<section id="view-trivia" class="view">
-  <div class="trivia-shell">
-    <div class="trivia-card" id="triviaCard"></div>
-  </div>
-</section>
-
-<footer class="app-footer">
-  Hecho con 💛 por el equipo de Cultura & Engagement de <a href="https://humand.co" target="_blank" rel="noopener">Humand</a>
-</footer>
+</div><!-- /dashShell -->
 
 <div class="toast" id="toast"></div>
 
@@ -517,7 +1166,7 @@ h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
 
 <script>
 /* =====================================================================
-   CONFIG · pegar URL y anon key del nuevo proyecto Supabase
+   CONFIG
    ===================================================================== */
 const SUPABASE_URL = 'https://ogwzbwilfouiivggznvw.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nd3pid2lsZm91aWl2Z2d6bnZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxMDQwMDIsImV4cCI6MjA5MTY4MDAwMn0.wPjUVkZ6Q7n35GL2oWSlNkoNp_vwDRKAHE-QN1D45_I';
@@ -527,23 +1176,31 @@ const sb = (SUPABASE_URL.startsWith('http') && window.supabase)
   : null;
 
 /* =====================================================================
-   ROUTER
+   CLOCK & GREETING
    ===================================================================== */
-const tabs = document.querySelectorAll('.tab');
-const views = {
-  pulso: document.getElementById('view-pulso'),
-  dashboard: document.getElementById('view-dashboard'),
-  trivia: document.getElementById('view-trivia'),
-};
-function go(tab){
-  tabs.forEach(t=>t.classList.toggle('active', t.dataset.tab===tab));
-  Object.entries(views).forEach(([k,v])=>v.classList.toggle('active', k===tab));
-  if(tab==='dashboard') Dashboard.activate();
-  if(tab==='pulso') Pulso.reset(true);
-  if(tab==='trivia') Trivia.reset(true);
-  history.replaceState(null,'','#'+tab);
+function updateClock(){
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const el = document.getElementById('statusTime');
+  if(el) el.textContent = h + ':' + m;
 }
-tabs.forEach(t=>t.addEventListener('click',()=>go(t.dataset.tab)));
+updateClock();
+setInterval(updateClock, 10000);
+
+(function setGreeting(){
+  const h = new Date().getHours();
+  const g = h < 12 ? '¡Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches';
+  const greet = document.getElementById('homeGreeting');
+  if(greet) greet.textContent = g + ', Camila 🔥';
+  const days = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const now = new Date();
+  const dateEl = document.getElementById('homeDate');
+  if(dateEl) dateEl.textContent =
+    days[now.getDay()].charAt(0).toUpperCase() + days[now.getDay()].slice(1) +
+    ', ' + now.getDate() + ' de ' + months[now.getMonth()] + ' de ' + now.getFullYear();
+})();
 
 /* =====================================================================
    TOAST
@@ -558,17 +1215,83 @@ function toast(msg, type=''){
 }
 
 /* =====================================================================
-   PULSO · 7 preguntas con state machine
+   MODAL
    ===================================================================== */
+const modalOverlay = document.getElementById('modalOverlay');
+const pulsoCard    = document.getElementById('pulsoCard');
+const triviaCard   = document.getElementById('triviaCard');
+
+function openModal(which){
+  pulsoCard.style.display  = which === 'pulso'  ? 'flex' : 'none';
+  triviaCard.style.display = which === 'trivia' ? 'flex' : 'none';
+  modalOverlay.classList.add('open');
+  history.replaceState(null,'','#'+which);
+  if(which === 'pulso')  { Pulso.reset(true); }
+  if(which === 'trivia') { Trivia.reset(true); }
+}
+
+function closeModal(){
+  modalOverlay.classList.remove('open');
+  history.replaceState(null,'','#home');
+  try{ Trivia.stopIfRunning && Trivia.stopIfRunning(); } catch(_){}
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+// tap backdrop closes modal
+modalOverlay.addEventListener('click', function(e){
+  if(e.target === modalOverlay) closeModal();
+});
+
+/* =====================================================================
+   ROUTER
+   ===================================================================== */
+const appShell  = document.getElementById('appShell');
+const dashShell = document.getElementById('dashShell');
+
+function go(tab){
+  if(tab === 'dashboard'){
+    appShell.style.display  = 'none';
+    dashShell.classList.add('active');
+    history.replaceState(null,'','#dashboard');
+    Dashboard.activate();
+  } else if(tab === 'home'){
+    dashShell.classList.remove('active');
+    appShell.style.display = '';
+    closeModal();
+  } else if(tab === 'pulso' || tab === 'trivia'){
+    dashShell.classList.remove('active');
+    appShell.style.display = '';
+    openModal(tab);
+  }
+}
+
+// Home cards
+document.getElementById('openPulso').addEventListener('click',     ()=> go('pulso'));
+document.getElementById('openTrivia').addEventListener('click',    ()=> go('trivia'));
+document.getElementById('openDashboard').addEventListener('click', ()=> go('dashboard'));
+document.getElementById('dashBack').addEventListener('click',      ()=> go('home'));
+
+/* =====================================================================
+   PULSO · 7 preguntas
+   ===================================================================== */
+/* SVG face icons for mood scale — no emoji chars */
+const MOOD_FACES = {
+  1:{color:'#7b8fa6',svg:'<circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="11" y1="13" x2="13.5" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="18.5" y1="13" x2="21" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M11 21 Q16 18 21 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
+  2:{color:'#aaaaba',svg:'<circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13" r="1.3" fill="currentColor"/><circle cx="20" cy="13" r="1.3" fill="currentColor"/><line x1="11" y1="20.5" x2="21" y2="20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
+  3:{color:'#4cbf6e',svg:'<circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13" r="1.3" fill="currentColor"/><circle cx="20" cy="13" r="1.3" fill="currentColor"/><path d="M11 20 Q16 23.5 21 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
+  4:{color:'#28c040',svg:'<circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13" r="1.3" fill="currentColor"/><circle cx="20" cy="13" r="1.3" fill="currentColor"/><path d="M10 19 Q16 25 22 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
+  5:{color:'#f4a320',svg:'<circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="13" r="1.6" fill="currentColor"/><circle cx="20" cy="13" r="1.6" fill="currentColor"/><path d="M9 18 Q16 26.5 23 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'},
+};
+
 const PULSO_QUESTIONS = [
   { key:'q1_energia', type:'emoji', title:'¿Cómo llegás al evento hoy?',
     helper:'Elegí cómo te sentís en este momento',
     options:[
-      {v:1, e:'😴', l:'Con poca energía'},
-      {v:2, e:'😐', l:'Tranquilo/a'},
-      {v:3, e:'🙂', l:'Bien'},
-      {v:4, e:'😊', l:'Muy bien'},
-      {v:5, e:'🔥', l:'¡Con todas las pilas!'},
+      {v:1, l:'Con poca energía'},
+      {v:2, l:'Tranquilo/a'},
+      {v:3, l:'Bien'},
+      {v:4, l:'Muy bien'},
+      {v:5, l:'¡Con todas las pilas!'},
     ]},
   { key:'q2_expectativa', type:'radio', title:'¿Qué venís a buscar hoy?',
     helper:'Elegí lo más importante para vos',
@@ -596,31 +1319,22 @@ const PULSO_QUESTIONS = [
 ];
 
 const Pulso = (function(){
-  let idx = 0; // -1 welcome, 0..n-1 preguntas, n success
+  let idx = 0;
   let answers = {};
   const card = document.getElementById('pulsoCard');
 
   function reset(force){
-    if(!force && idx !== PULSO_QUESTIONS.length) return; // no perder progreso si está respondiendo
+    if(!force && idx !== PULSO_QUESTIONS.length) return;
     idx = -1; answers = {}; render();
   }
 
-  function pick(key, val){
-    answers[key] = val;
-    render(); // re-render para reflejar selección y habilitar botón
-  }
+  function pick(key, val){ answers[key] = val; render(); }
 
   function next(){
     const q = PULSO_QUESTIONS[idx];
-    if(q && q.type !== 'textarea' && (answers[q.key] === undefined || answers[q.key] === null)){
-      return;
-    }
+    if(q && q.type !== 'textarea' && (answers[q.key] === undefined || answers[q.key] === null)) return;
     idx++;
-    if(idx === PULSO_QUESTIONS.length){
-      submit();
-    } else {
-      render();
-    }
+    if(idx === PULSO_QUESTIONS.length){ submit(); } else { render(); }
   }
   function back(){
     if(idx > 0){ idx--; render(); }
@@ -630,10 +1344,8 @@ const Pulso = (function(){
 
   async function submit(){
     if(!sb){
-      toast('Supabase no configurado — completá URL y key en index.html', 'error');
-      idx = PULSO_QUESTIONS.length - 1;
-      render();
-      return;
+      toast('Supabase no configurado', 'error');
+      idx = PULSO_QUESTIONS.length - 1; render(); return;
     }
     renderSubmitting();
     const payload = {
@@ -646,17 +1358,10 @@ const Pulso = (function(){
       q7_comentario: (answers.q7_comentario || '').trim() || null,
     };
     const { error } = await sb.from('pulso_connect').insert(payload);
-    if(error){
-      console.error(error);
-      toast('No pudimos guardar tu respuesta. Probá de nuevo.', 'error');
-      idx = PULSO_QUESTIONS.length - 1;
-      render();
-    } else {
-      renderSuccess();
-    }
+    if(error){ console.error(error); toast('Error al guardar. Probá de nuevo.', 'error'); idx = PULSO_QUESTIONS.length - 1; render(); }
+    else { renderSuccess(); }
   }
 
-  /* ---------- RENDER ---------- */
   function render(){
     if(idx === -1) return renderWelcome();
     if(idx >= PULSO_QUESTIONS.length) return renderSuccess();
@@ -670,25 +1375,30 @@ const Pulso = (function(){
           <img src="assets/event/logo nuevo.png" alt="humand AI Connect">
           <div class="hero-sub">Cultural Engagement Pack</div>
         </div>
-        <div class="emoji">💛</div>
+        <div class="splash-icon" style="margin-top:20px">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12h6M9 16h4"/></svg>
+        </div>
         <h2>Pulso del evento</h2>
-        <button class="btn btn-primary btn-lg" id="pStart">Empezar</button>
+        <p>7 preguntas rápidas sobre cómo vivís el evento hoy.</p>
+        <button class="btn btn-primary btn-lg" id="pStart">Empezar encuesta</button>
       </div>`;
     document.getElementById('pStart').onclick = start;
   }
 
   function renderQuestion(){
     const q = PULSO_QUESTIONS[idx];
-    const pct = Math.round(((idx) / PULSO_QUESTIONS.length) * 100);
+    const pct = Math.round((idx / PULSO_QUESTIONS.length) * 100);
     const value = answers[q.key];
     let body = '';
     if(q.type === 'emoji'){
       body = `<div class="emoji-scale">` +
-        q.options.map(o=>`
-          <button class="emoji-opt ${value===o.v?'selected':''}" data-v="${o.v}">
-            <span class="e">${o.e}</span>
+        q.options.map(o=>{
+          const f = MOOD_FACES[o.v] || MOOD_FACES[3];
+          return `<button class="emoji-opt ${value===o.v?'selected':''}" data-v="${o.v}" style="--face-stroke:${f.color}">
+            <span class="e"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="color:${f.color}">${f.svg}</svg></span>
             <span class="l">${o.l}</span>
-          </button>`).join('') + `</div>`;
+          </button>`;
+        }).join('') + `</div>`;
     } else if(q.type === 'radio'){
       body = `<div class="opt-list">` +
         q.options.map(o=>`
@@ -721,15 +1431,10 @@ const Pulso = (function(){
         <button class="btn btn-ghost" id="pBack">${idx===0?'Volver':'Anterior'}</button>
         <button class="btn btn-primary" id="pNext" ${canNext?'':'disabled'}>${isLast?'Enviar respuestas':'Siguiente'}</button>
       </div>`;
-    // wire
     if(q.type === 'emoji' || q.type === 'scale4'){
-      card.querySelectorAll('[data-v]').forEach(b=>{
-        b.onclick = ()=> pick(q.key, parseInt(b.dataset.v,10));
-      });
+      card.querySelectorAll('[data-v]').forEach(b=>{ b.onclick = ()=> pick(q.key, parseInt(b.dataset.v,10)); });
     } else if(q.type === 'radio'){
-      card.querySelectorAll('[data-v]').forEach(b=>{
-        b.onclick = ()=> pick(q.key, b.dataset.v);
-      });
+      card.querySelectorAll('[data-v]').forEach(b=>{ b.onclick = ()=> pick(q.key, b.dataset.v); });
     } else if(q.type === 'textarea'){
       const ta = document.getElementById('pTa');
       ta.oninput = ()=>{ answers[q.key] = ta.value; };
@@ -741,7 +1446,9 @@ const Pulso = (function(){
   function renderSubmitting(){
     card.innerHTML = `
       <div class="splash">
-        <div class="emoji">⏳</div>
+        <div class="splash-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        </div>
         <h2>Guardando…</h2>
         <p>Enviando tu respuesta al dashboard.</p>
       </div>`;
@@ -754,10 +1461,12 @@ const Pulso = (function(){
           <img src="assets/event/logo nuevo.png" alt="humand AI Connect">
           <div class="hero-sub">Cultural Engagement Pack</div>
         </div>
-        <div class="emoji">💛</div>
+        <div class="splash-icon green" style="margin-top:20px">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
         <h2>¡Gracias!</h2>
-        <p>Tu pulso ya está en el dashboard del stand. Si querés, pasá a la pantalla de al lado para ver cómo se mueve.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center">
+        <p>Tu pulso ya está en el dashboard del stand. Pasá a la pantalla de al lado para ver cómo se mueve.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
           <button class="btn btn-primary btn-lg" id="pAgain">Responder de nuevo</button>
           <button class="btn btn-ghost btn-lg" id="pToDash">Ver dashboard →</button>
         </div>
@@ -770,31 +1479,26 @@ const Pulso = (function(){
 })();
 
 /* =====================================================================
-   DASHBOARD · realtime + render
+   DASHBOARD · realtime
    ===================================================================== */
 const Dashboard = (function(){
   let responses = [];
   let initialized = false;
   let channel = null;
-  let pollTimer = null;
 
   async function activate(){
     if(initialized) return render();
     initialized = true;
-    if(!sb){
-      renderConfigError();
-      return;
-    }
+    if(!sb){ renderConfigError(); return; }
     await fetchAll();
     subscribe();
-    // Fallback polling cada 30s por si se cae la subscripción
-    pollTimer = setInterval(fetchAll, 30000);
+    setInterval(fetchAll, 30000);
     render();
   }
 
   async function fetchAll(){
     const { data, error } = await sb.from('pulso_connect')
-      .select('*').order('created_at', { ascending: true }).limit(2000);
+      .select('*').order('created_at',{ascending:true}).limit(2000);
     if(error){ console.error(error); return; }
     responses = data || [];
     render();
@@ -803,36 +1507,26 @@ const Dashboard = (function(){
   function subscribe(){
     if(channel) return;
     channel = sb.channel('pulso_connect_changes')
-      .on('postgres_changes',
-          { event: 'INSERT', schema: 'public', table: 'pulso_connect' },
-          payload => {
-            responses.push(payload.new);
-            render();
-            toast('Nueva respuesta 💛', 'success');
-          })
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'pulso_connect'},
+        payload=>{ responses.push(payload.new); render(); toast('Nueva respuesta 💛','success'); })
       .subscribe();
   }
 
-  /* ----- agg helpers ----- */
   function counts(field){
     const m = new Map();
     for(const r of responses){
       const v = r[field];
-      if(v === null || v === undefined || v === '') continue;
-      m.set(v, (m.get(v)||0)+1);
+      if(v===null||v===undefined||v==='') continue;
+      m.set(v,(m.get(v)||0)+1);
     }
     return m;
   }
   function total(){ return responses.length; }
 
-  function renderBars(elId, items, opts={}){
-    // items: [{label, count, ico?, color?}]
+  function renderBars(elId, items){
     const el = document.getElementById(elId);
-    if(!items.length){
-      el.innerHTML = `<div class="cmt-empty">Sin datos todavía</div>`;
-      return;
-    }
-    const max = Math.max(...items.map(i=>i.count), 1);
+    if(!items.length){ el.innerHTML=`<div class="cmt-empty">Sin datos todavía</div>`; return; }
+    const max = Math.max(...items.map(i=>i.count),1);
     el.innerHTML = items.map(i=>{
       const pct = Math.round((i.count/max)*100);
       const totPct = total() ? Math.round((i.count/total())*100) : 0;
@@ -845,248 +1539,184 @@ const Dashboard = (function(){
   }
 
   function render(){
-    // Total
     document.getElementById('dashTotal').textContent = total();
     document.getElementById('kpiTotal').textContent = total();
     document.getElementById('kpiTotalDelta').innerHTML = total()
       ? `Última: <strong>${timeAgo(responses[responses.length-1].created_at)}</strong>`
       : 'esperando primer pulso…';
 
-    // KPI sentimiento
     const ener = responses.map(r=>r.q1_energia).filter(v=>v!=null);
     const pos = ener.filter(v=>v>=4).length;
-    document.getElementById('kpiPos').textContent = ener.length
-      ? `${Math.round(pos/ener.length*100)}%` : '—';
+    document.getElementById('kpiPos').textContent = ener.length ? `${Math.round(pos/ener.length*100)}%` : '—';
 
-    // KPI speaker top
     const sp = topOf(counts('q4_speaker'));
     document.getElementById('kpiSpeaker').textContent = sp ? sp.k : '—';
-    document.getElementById('kpiSpeakerPct').textContent = sp ? `${sp.v} votos · ${pctOf(sp.v, total())}%` : '—';
+    document.getElementById('kpiSpeakerPct').textContent = sp ? `${sp.v} votos · ${pctOf(sp.v,total())}%` : '—';
 
-    // KPI tema top
     const tm = topOf(counts('q5_tema'));
     document.getElementById('kpiTema').textContent = tm ? tm.k : '—';
-    document.getElementById('kpiTemaPct').textContent = tm ? `${tm.v} votos · ${pctOf(tm.v, total())}%` : '—';
+    document.getElementById('kpiTemaPct').textContent = tm ? `${tm.v} votos · ${pctOf(tm.v,total())}%` : '—';
 
-    // Energía
-    const enerCounts = counts('q1_energia');
-    const enerLabels = [
-      {v:1, ico:'😴', label:'Bajón'},
-      {v:2, ico:'😐', label:'Neutro'},
-      {v:3, ico:'🙂', label:'Bien'},
-      {v:4, ico:'😊', label:'Re bien'},
-      {v:5, ico:'🔥', label:'Encendido'},
+    const enerLabels=[
+      {v:1,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#7b8fa6;vertical-align:middle">${MOOD_FACES[1].svg}</svg>`,label:'Bajón'},
+      {v:2,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#aaaaba;vertical-align:middle">${MOOD_FACES[2].svg}</svg>`,label:'Neutro'},
+      {v:3,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#4cbf6e;vertical-align:middle">${MOOD_FACES[3].svg}</svg>`,label:'Bien'},
+      {v:4,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#28c040;vertical-align:middle">${MOOD_FACES[4].svg}</svg>`,label:'Re bien'},
+      {v:5,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#f4a320;vertical-align:middle">${MOOD_FACES[5].svg}</svg>`,label:'Encendido'},
     ];
-    renderBars('chartEnergia', enerLabels.map((o,i)=>({
-      label:o.label, ico:o.ico, count: enerCounts.get(o.v)||0,
-      color: i>=3 ? 'green' : (i<=1 ? 'yellow' : '')
-    })));
+    const enerCounts=counts('q1_energia');
+    renderBars('chartEnergia',enerLabels.map((o,i)=>({label:o.label,ico:o.ico,count:enerCounts.get(o.v)||0,color:i>=3?'green':(i<=1?'yellow':'')})));
 
-    // Expectativas
-    const expOpts = ['Networking','Aprender tendencias','Ver qué hay de nuevo en Humand','Todas las anteriores'];
-    const expCounts = counts('q2_expectativa');
-    renderBars('chartExpectativa', expOpts.map(o=>({label:o, count:expCounts.get(o)||0})));
+    const expOpts=['Networking','Aprender tendencias','Ver qué hay de nuevo en Humand','Todas las anteriores'];
+    const expCounts=counts('q2_expectativa');
+    renderBars('chartExpectativa',expOpts.map(o=>({label:o,count:expCounts.get(o)||0})));
 
-    // Networking
-    const netOpts = ['Sí, mucho','Algo','Todavía no'];
-    const netCounts = counts('q3_networking');
-    const netColors = ['green','h400','yellow'];
-    renderBars('chartNetworking', netOpts.map((o,i)=>({label:o, count:netCounts.get(o)||0, color:netColors[i]})));
+    const netOpts=['Sí, mucho','Algo','Todavía no'];
+    const netColors=['green','h400','yellow'];
+    const netCounts=counts('q3_networking');
+    renderBars('chartNetworking',netOpts.map((o,i)=>({label:o,count:netCounts.get(o)||0,color:netColors[i]})));
 
-    // Speakers ranking
-    const spCounts = [...counts('q4_speaker').entries()].sort((a,b)=>b[1]-a[1]);
-    const elSp = document.getElementById('chartSpeakers');
-    if(!spCounts.length){
-      elSp.innerHTML = `<div class="cmt-empty">Sin datos todavía</div>`;
-    } else {
-      const max = spCounts[0][1];
-      elSp.innerHTML = spCounts.map(([name,count],i)=>{
-        const pct = pctOf(count, total());
-        return `<div class="rank-row ${i===0?'first':''}">
+    const spCounts=[...counts('q4_speaker').entries()].sort((a,b)=>b[1]-a[1]);
+    const elSp=document.getElementById('chartSpeakers');
+    if(!spCounts.length){ elSp.innerHTML=`<div class="cmt-empty">Sin datos todavía</div>`; }
+    else{
+      const max=spCounts[0][1];
+      elSp.innerHTML=spCounts.map(([name,count],i)=>`
+        <div class="rank-row ${i===0?'first':''}">
           <div class="rank-pos">${i+1}</div>
           <div class="rank-name">${escapeHtml(name)}</div>
           <div class="rank-bar"><div class="rank-bar-fill" style="width:${Math.round(count/max*100)}%"></div></div>
-          <div class="rank-pct">${pct}%</div>
-        </div>`;
-      }).join('');
-    }
-
-    // Tema
-    const temaOpts = ['IA en RRHH','Cultura basada en datos','Liderazgo','Employee Experience'];
-    const temaCounts = counts('q5_tema');
-    renderBars('chartTema', temaOpts.map(o=>({label:o, count:temaCounts.get(o)||0, color:'purple'})));
-
-    // Frecuencia
-    const freqLabels = [
-      {v:1, label:'Nunca', color:'yellow'},
-      {v:2, label:'Algunas veces', color:''},
-      {v:3, label:'Frecuente', color:'h400'},
-      {v:4, label:'Siempre', color:'green'},
-    ];
-    const freqCounts = counts('q6_frecuencia');
-    renderBars('chartFrecuencia', freqLabels.map(o=>({
-      label:o.label, count:freqCounts.get(o.v)||0, color:o.color
-    })));
-
-    // Comentarios
-    const cmts = responses.filter(r=>r.q7_comentario && r.q7_comentario.trim())
-      .slice().reverse();
-    const elC = document.getElementById('chartComments');
-    if(!cmts.length){
-      elC.innerHTML = `<div class="cmt-empty">Todavía no hay comentarios. ¡Los primeros van a aparecer acá!</div>`;
-    } else {
-      elC.innerHTML = cmts.slice(0,30).map(r=>`
-        <div class="cmt">
-          <div class="cmt-text">${escapeHtml(r.q7_comentario)}</div>
-          <div class="cmt-time">${timeAgo(r.created_at)}</div>
+          <div class="rank-pct">${pctOf(count,total())}%</div>
         </div>`).join('');
     }
+
+    const temaOpts=['IA en RRHH','Cultura basada en datos','Liderazgo','Employee Experience'];
+    const temaCounts=counts('q5_tema');
+    renderBars('chartTema',temaOpts.map(o=>({label:o,count:temaCounts.get(o)||0,color:'purple'})));
+
+    const freqLabels=[{v:1,label:'Nunca',color:'yellow'},{v:2,label:'Algunas veces',color:''},{v:3,label:'Frecuente',color:'h400'},{v:4,label:'Siempre',color:'green'}];
+    const freqCounts=counts('q6_frecuencia');
+    renderBars('chartFrecuencia',freqLabels.map(o=>({label:o.label,count:freqCounts.get(o.v)||0,color:o.color})));
+
+    const cmts=responses.filter(r=>r.q7_comentario&&r.q7_comentario.trim()).slice().reverse();
+    const elC=document.getElementById('chartComments');
+    if(!cmts.length){ elC.innerHTML=`<div class="cmt-empty">Todavía no hay comentarios. ¡Los primeros van a aparecer acá!</div>`; }
+    else{ elC.innerHTML=cmts.slice(0,30).map(r=>`<div class="cmt"><div class="cmt-text">${escapeHtml(r.q7_comentario)}</div><div class="cmt-time">${timeAgo(r.created_at)}</div></div>`).join(''); }
   }
 
   function renderConfigError(){
-    document.getElementById('chartComments').innerHTML =
-      `<div class="cmt-empty">⚙️ Configurá <code>SUPABASE_URL</code> y <code>SUPABASE_KEY</code> en index.html</div>`;
+    document.getElementById('chartComments').innerHTML=`<div class="cmt-empty">⚙️ Configurá SUPABASE_URL y SUPABASE_KEY</div>`;
   }
 
-  function topOf(map){
-    let best=null;
-    for(const [k,v] of map){
-      if(!best || v>best.v) best={k,v};
-    }
-    return best;
-  }
-  function pctOf(n,t){ return t? Math.round(n/t*100) : 0; }
+  function topOf(map){ let best=null; for(const[k,v]of map){ if(!best||v>best.v) best={k,v}; } return best; }
+  function pctOf(n,t){ return t?Math.round(n/t*100):0; }
 
   return { activate, render };
 })();
 
 /* =====================================================================
-   TRIVIA · 8 preguntas, timer 15s, scoring por velocidad
+   TRIVIA · 8 preguntas
    ===================================================================== */
 const TRIVIA_QUESTIONS = [
-  { q:'¿En qué año se fundó Humand?',
-    opts:['2016','2018','2019','2020'], correct:2 },
-  { q:'¿Cuántos colaboradores conectan a Humand en el mundo?',
-    opts:['+500.000','+1.000.000','+1.200.000','+1.500.000'], correct:3 },
-  { q:'¿Cuánto fue la Serie A de Humand?',
-    opts:['USD 30M','USD 50M','USD 66M','USD 100M'], correct:2 },
-  { q:'¿Cuántas empresas usan Humand en el mundo?',
-    opts:['+500','+1.000','+2.000','+5.000'], correct:2 },
-  { q:'¿Cuántos módulos ofrece la plataforma de Humand?',
-    opts:['+5','+10','+15','+25'], correct:3 },
-  { q:'¿Qué fondos lideraron la Serie A de Humand?',
-    opts:['Sequoia y a16z','Kaszek y Goodwater','Tiger y SoftBank','Y Combinator y Accel'], correct:1 },
-  { q:'¿Dónde se hace Humand Connect 2026?',
-    opts:['Centro de Convenciones Buenos Aires','La Rural','Yacht Club Puerto Madero','Hotel Hilton'], correct:2 },
-  { q:'¿Quién es el speaker que habla sobre liderazgo en el deporte?',
-    opts:['Mario Pergolini','Patricia Jebsen','Sandra Rossi','Guillermo Barros Schelotto'], correct:3 },
+  {q:'¿En qué año se fundó Humand?',opts:['2016','2018','2019','2020'],correct:2},
+  {q:'¿Cuántos colaboradores conectan a Humand en el mundo?',opts:['+500.000','+1.000.000','+1.200.000','+1.500.000'],correct:3},
+  {q:'¿Cuánto fue la Serie A de Humand?',opts:['USD 30M','USD 50M','USD 66M','USD 100M'],correct:2},
+  {q:'¿Cuántas empresas usan Humand en el mundo?',opts:['+500','+1.000','+2.000','+5.000'],correct:2},
+  {q:'¿Cuántos módulos ofrece la plataforma de Humand?',opts:['+5','+10','+15','+25'],correct:3},
+  {q:'¿Qué fondos lideraron la Serie A de Humand?',opts:['Sequoia y a16z','Kaszek y Goodwater','Tiger y SoftBank','Y Combinator y Accel'],correct:1},
+  {q:'¿Dónde se hace Humand Connect 2026?',opts:['Centro de Convenciones Buenos Aires','La Rural','Yacht Club Puerto Madero','Hotel Hilton'],correct:2},
+  {q:'¿Quién es el speaker que habla sobre liderazgo en el deporte?',opts:['Mario Pergolini','Patricia Jebsen','Sandra Rossi','Guillermo Barros Schelotto'],correct:3},
 ];
-const TRIVIA_TIME = 15; // segundos
+const TRIVIA_TIME = 15;
 const TRIVIA_LS_KEY = 'cep_trivia_ranking';
 
 const Trivia = (function(){
   const card = document.getElementById('triviaCard');
-  let idx = -1; // -1 welcome, 0..n-1 preguntas, n result
+  let idx = -1;
   let score = 0;
   let timeLeft = TRIVIA_TIME;
   let answered = false;
   let timer = null;
   let ranking = loadRanking();
 
-  function loadRanking(){
-    try { return JSON.parse(localStorage.getItem(TRIVIA_LS_KEY) || '[]'); }
-    catch(_){ return []; }
-  }
-  function saveRanking(){
-    try { localStorage.setItem(TRIVIA_LS_KEY, JSON.stringify(ranking.slice(0,5))); } catch(_){}
-  }
+  function loadRanking(){ try{ return JSON.parse(localStorage.getItem(TRIVIA_LS_KEY)||'[]'); }catch(_){ return []; } }
+  function saveRanking(){ try{ localStorage.setItem(TRIVIA_LS_KEY,JSON.stringify(ranking.slice(0,5))); }catch(_){} }
 
   function reset(force){
-    if(!force && idx >= 0 && idx < TRIVIA_QUESTIONS.length) return;
+    if(!force && idx>=0 && idx<TRIVIA_QUESTIONS.length) return;
     stopTimer();
-    idx = -1; score = 0; answered = false;
+    idx=-1; score=0; answered=false;
     render();
   }
 
-  function start(){ idx = 0; score = 0; renderQuestion(); }
+  function stopIfRunning(){ stopTimer(); }
+
+  function start(){ idx=0; score=0; renderQuestion(); }
 
   function startTimer(){
-    timeLeft = TRIVIA_TIME;
-    answered = false;
-    updateTimerUI();
-    stopTimer();
-    timer = setInterval(()=>{
+    timeLeft=TRIVIA_TIME; answered=false;
+    updateTimerUI(); stopTimer();
+    timer=setInterval(()=>{
       timeLeft--;
       updateTimerUI();
-      if(timeLeft <= 0){
-        stopTimer();
-        if(!answered) timeOut();
-      }
-    }, 1000);
+      if(timeLeft<=0){ stopTimer(); if(!answered) timeOut(); }
+    },1000);
   }
-  function stopTimer(){ if(timer){ clearInterval(timer); timer = null; } }
+  function stopTimer(){ if(timer){ clearInterval(timer); timer=null; } }
 
   function updateTimerUI(){
-    const pct = Math.max(0, (timeLeft/TRIVIA_TIME)*100);
-    const fill = document.querySelector('#triviaCard .timer-fill');
+    const pct=Math.max(0,(timeLeft/TRIVIA_TIME)*100);
+    const fill=document.querySelector('#triviaCard .timer-fill');
     if(fill){
-      fill.style.width = pct + '%';
-      fill.classList.toggle('warn', timeLeft <= 7 && timeLeft > 3);
-      fill.classList.toggle('danger', timeLeft <= 3);
+      fill.style.width=pct+'%';
+      fill.classList.toggle('warn',timeLeft<=7&&timeLeft>3);
+      fill.classList.toggle('danger',timeLeft<=3);
     }
-    const num = document.querySelector('#triviaCard .timer-num');
-    if(num) num.textContent = timeLeft + 's';
+    const num=document.querySelector('#triviaCard .timer-num');
+    if(num) num.textContent=timeLeft+'s';
   }
 
   function pick(i){
     if(answered) return;
-    answered = true;
-    stopTimer();
-    const q = TRIVIA_QUESTIONS[idx];
-    const correct = i === q.correct;
-    const earned = correct ? (100 + timeLeft * 10) : 0;
-    score += earned;
-    // Pintar
-    const opts = card.querySelectorAll('.q-opt');
+    answered=true; stopTimer();
+    const q=TRIVIA_QUESTIONS[idx];
+    const correct=i===q.correct;
+    const earned=correct?(100+timeLeft*10):0;
+    score+=earned;
+    const opts=card.querySelectorAll('.q-opt');
     opts.forEach((b,bi)=>{
-      b.disabled = true;
-      if(bi === i) b.classList.add(correct ? 'correct' : 'wrong');
-      if(!correct && bi === q.correct) b.classList.add('reveal-correct');
+      b.disabled=true;
+      if(bi===i) b.classList.add(correct?'correct':'wrong');
+      if(!correct&&bi===q.correct) b.classList.add('reveal-correct');
     });
-    // Update score chip
-    const chip = card.querySelector('.trivia-score');
-    if(chip) chip.innerHTML = `⭐ ${score} pts`;
-    setTimeout(advance, 1400);
+    const chip=card.querySelector('.trivia-score');
+    if(chip) chip.innerHTML=`<svg width="13" height="13" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--yellow)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${score} pts`;
+    setTimeout(advance,1400);
   }
+
   function timeOut(){
     if(answered) return;
-    answered = true;
-    const q = TRIVIA_QUESTIONS[idx];
-    const opts = card.querySelectorAll('.q-opt');
-    opts.forEach((b,bi)=>{
-      b.disabled = true;
-      if(bi === q.correct) b.classList.add('reveal-correct');
-    });
-    setTimeout(advance, 1400);
+    answered=true;
+    const q=TRIVIA_QUESTIONS[idx];
+    const opts=card.querySelectorAll('.q-opt');
+    opts.forEach((b,bi)=>{ b.disabled=true; if(bi===q.correct) b.classList.add('reveal-correct'); });
+    setTimeout(advance,1400);
   }
+
   function advance(){
     idx++;
-    if(idx >= TRIVIA_QUESTIONS.length){
-      renderResult();
-    } else {
-      renderQuestion();
-    }
+    if(idx>=TRIVIA_QUESTIONS.length){ renderResult(); } else { renderQuestion(); }
   }
 
   function renderQuestion(){
-    const q = TRIVIA_QUESTIONS[idx];
-    card.innerHTML = `
+    const q=TRIVIA_QUESTIONS[idx];
+    card.innerHTML=`
       <div class="trivia-top">
-        <span class="trivia-step">⚡ Pregunta ${idx+1} de ${TRIVIA_QUESTIONS.length}</span>
-        <span class="trivia-score">⭐ ${score} pts</span>
+        <span class="trivia-step"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Pregunta ${idx+1} de ${TRIVIA_QUESTIONS.length}</span>
+        <span class="trivia-score"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--yellow)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${score} pts</span>
       </div>
       <div class="timer-track"><div class="timer-fill" style="width:100%"></div></div>
-      <div style="display:flex; justify-content:space-between; margin:-18px 0 18px; font-size:11px; font-weight:600; color:var(--n800);">
+      <div style="display:flex;justify-content:space-between;margin:-18px 0 16px;font-size:11px;font-weight:600;color:var(--n800);">
         <span>Más rápido = más puntos</span>
         <span class="timer-num">${TRIVIA_TIME}s</span>
       </div>
@@ -1098,24 +1728,24 @@ const Trivia = (function(){
             <span>${escapeHtml(o)}</span>
           </button>`).join('')}
       </div>`;
-    card.querySelectorAll('.q-opt').forEach(b=>{
-      b.onclick = ()=> pick(parseInt(b.dataset.i,10));
-    });
+    card.querySelectorAll('.q-opt').forEach(b=>{ b.onclick=()=>pick(parseInt(b.dataset.i,10)); });
     startTimer();
   }
 
   function renderWelcome(){
-    card.innerHTML = `
+    card.innerHTML=`
       <div class="splash">
         <div class="splash-hero">
           <img src="assets/event/logo nuevo.png" alt="humand AI Connect">
           <div class="hero-sub">Cultural Engagement Pack</div>
         </div>
-        <div class="emoji">⚡</div>
+        <div class="splash-icon purple" style="margin-top:20px">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
         <h2>Trivia Humand</h2>
-        <p>${TRIVIA_QUESTIONS.length} preguntas sobre Humand y Connect 2026. Tenés <strong>${TRIVIA_TIME} segundos</strong> por pregunta. Cuanto más rápido respondés, más puntos sumás.</p>
+        <p>${TRIVIA_QUESTIONS.length} preguntas · <strong>${TRIVIA_TIME}s</strong> por pregunta. Cuanto más rápido, más puntos.</p>
         <button class="btn btn-primary btn-lg" id="tStart">Empezar</button>
-        ${ranking.length ? `<div class="trivia-rank" style="margin-top:24px; width:100%; max-width:360px">
+        ${ranking.length?`<div class="trivia-rank" style="margin-top:20px;width:100%;max-width:340px">
           <h4>Top de la sesión</h4>
           ${ranking.slice(0,5).map((r,i)=>`
             <div class="tr-row ${['gold','silver','bronze'][i]||''}">
@@ -1123,55 +1753,52 @@ const Trivia = (function(){
               <div class="tr-name">${escapeHtml(r.name)}</div>
               <div class="tr-score">${r.score} pts</div>
             </div>`).join('')}
-        </div>` : ''}
+        </div>`:''}
       </div>`;
-    document.getElementById('tStart').onclick = start;
+    document.getElementById('tStart').onclick=start;
   }
 
   function renderResult(){
-    const max = TRIVIA_QUESTIONS.length * (100 + TRIVIA_TIME*10);
-    const pct = Math.round(score/max*100);
-    let emoji = '🎯', msg = 'Gran partida';
-    if(pct >= 80){ emoji = '🏆'; msg = '¡Crack absoluto!'; }
-    else if(pct >= 60){ emoji = '⭐'; msg = '¡Muy bien!'; }
-    else if(pct >= 40){ emoji = '👍'; msg = '¡Buen ritmo!'; }
-    else { emoji = '💪'; msg = '¡A la próxima vamos por más!'; }
+    const max=TRIVIA_QUESTIONS.length*(100+TRIVIA_TIME*10);
+    const pct=Math.round(score/max*100);
+    let iconClass='mid', iconSvg='<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>', msg='Gran partida';
+    if(pct>=80){iconClass='gold';iconSvg='<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>';msg='¡Crack absoluto!';}
+    else if(pct>=60){iconClass='ok';iconSvg='<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>';msg='¡Muy bien!';}
+    else if(pct>=40){iconClass='mid';iconSvg='<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>';msg='¡Buen ritmo!';}
+    else{iconClass='low';iconSvg='<line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>';msg='¡Seguí participando!';}
 
-    card.innerHTML = `
+    card.innerHTML=`
       <div class="trivia-result">
-        <div class="emoji" style="font-size:64px">${emoji}</div>
+        <div class="result-icon ${iconClass}"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${iconSvg}</svg></div>
         <div class="lbl">Puntaje final</div>
         <div class="big">${score}</div>
         <h3 style="font-size:18px">${msg}</h3>
-        <p style="color:var(--n800); font-size:13px; margin:8px 0 20px">Sumás al top de la sesión si querés. Sin presión.</p>
-        <div style="display:flex; gap:8px; max-width:400px; margin:0 auto">
+        <p style="color:var(--n800);font-size:13px;margin:8px 0 18px">Sumá tu nombre al top de la sesión.</p>
+        <div style="display:flex;gap:8px;max-width:360px;margin:0 auto">
           <input class="fi" id="tName" placeholder="Tu nombre (opcional)" maxlength="24">
           <button class="btn btn-primary" id="tSave">Sumar al top</button>
         </div>
         <div class="trivia-rank" id="tRank"></div>
-        <button class="btn btn-ghost btn-lg" id="tAgain" style="margin-top:18px">Jugar de nuevo</button>
+        <button class="btn btn-ghost btn-lg" id="tAgain" style="margin-top:16px">Jugar de nuevo</button>
       </div>`;
     renderRank();
-    document.getElementById('tSave').onclick = ()=>{
-      const name = (document.getElementById('tName').value || '').trim() || 'Anónimo';
-      ranking.push({name, score, ts: Date.now()});
+    document.getElementById('tSave').onclick=()=>{
+      const name=(document.getElementById('tName').value||'').trim()||'Anónimo';
+      ranking.push({name,score,ts:Date.now()});
       ranking.sort((a,b)=>b.score-a.score);
-      ranking = ranking.slice(0,5);
-      saveRanking();
-      renderRank();
-      document.getElementById('tName').value = '';
-      toast('¡Sumado al top! 🏅', 'success');
+      ranking=ranking.slice(0,5);
+      saveRanking(); renderRank();
+      document.getElementById('tName').value='';
+      toast('¡Sumado al top! 🏅','success');
     };
-    document.getElementById('tAgain').onclick = ()=>{ idx=-1; score=0; render(); };
+    document.getElementById('tAgain').onclick=()=>{idx=-1;score=0;render();};
   }
+
   function renderRank(){
-    const el = document.getElementById('tRank');
+    const el=document.getElementById('tRank');
     if(!el) return;
-    if(!ranking.length){
-      el.innerHTML = `<h4>Top de la sesión</h4><div style="font-size:12px; color:var(--n500)">Vacío todavía. Sé el primero.</div>`;
-      return;
-    }
-    el.innerHTML = `<h4>Top de la sesión</h4>` + ranking.map((r,i)=>`
+    if(!ranking.length){el.innerHTML=`<h4>Top de la sesión</h4><div style="font-size:12px;color:var(--n500)">Vacío todavía. Sé el primero.</div>`;return;}
+    el.innerHTML=`<h4>Top de la sesión</h4>`+ranking.map((r,i)=>`
       <div class="tr-row ${['gold','silver','bronze'][i]||''}">
         <div class="tr-pos">${i+1}</div>
         <div class="tr-name">${escapeHtml(r.name)}</div>
@@ -1180,32 +1807,30 @@ const Trivia = (function(){
   }
 
   function render(){
-    if(idx === -1) return renderWelcome();
-    if(idx >= TRIVIA_QUESTIONS.length) return renderResult();
+    if(idx===-1) return renderWelcome();
+    if(idx>=TRIVIA_QUESTIONS.length) return renderResult();
     renderQuestion();
   }
 
-  return { reset, render };
+  return { reset, render, stopIfRunning };
 })();
 
 /* =====================================================================
    UTILS
    ===================================================================== */
 function escapeHtml(s){
-  if(s == null) return '';
-  return String(s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  if(s==null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 function escapeAttr(s){ return escapeHtml(s); }
 function timeAgo(iso){
-  const t = new Date(iso).getTime();
-  const s = Math.max(1, Math.round((Date.now() - t)/1000));
-  if(s < 60) return `hace ${s}s`;
-  const m = Math.round(s/60);
-  if(m < 60) return `hace ${m} min`;
-  const h = Math.round(m/60);
-  if(h < 24) return `hace ${h} h`;
+  const t=new Date(iso).getTime();
+  const s=Math.max(1,Math.round((Date.now()-t)/1000));
+  if(s<60) return `hace ${s}s`;
+  const m=Math.round(s/60);
+  if(m<60) return `hace ${m} min`;
+  const h=Math.round(m/60);
+  if(h<24) return `hace ${h} h`;
   return new Date(iso).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 }
 
@@ -1213,16 +1838,16 @@ function timeAgo(iso){
    INIT
    ===================================================================== */
 (function init(){
-  const hash = (location.hash || '#pulso').slice(1);
-  const start = ['pulso','dashboard','trivia'].includes(hash) ? hash : 'pulso';
   Pulso.render();
   Trivia.render();
-  if(start !== 'pulso') go(start); else go('pulso');
+  const hash = (location.hash || '').slice(1);
+  if(hash === 'pulso')     { openModal('pulso'); }
+  else if(hash === 'trivia')    { openModal('trivia'); }
+  else if(hash === 'dashboard') { go('dashboard'); }
   if(!sb){
-    setTimeout(()=>toast('⚙️ Falta configurar Supabase en index.html', 'error'), 600);
+    setTimeout(()=>toast('⚙️ Falta configurar Supabase en index.html','error'),600);
   }
-  // Re-render dashboard timestamps cada 30s
-  setInterval(()=>{ if(views.dashboard.classList.contains('active')) Dashboard.render(); }, 30000);
+  setInterval(()=>{ if(dashShell.classList.contains('active')) Dashboard.render(); },30000);
 })();
 </script>
 </body>
