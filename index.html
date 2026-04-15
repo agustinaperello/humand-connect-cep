@@ -1558,11 +1558,11 @@ const Dashboard = (function(){
     document.getElementById('kpiTemaPct').textContent = tm ? `${tm.v} votos · ${pctOf(tm.v,total())}%` : '—';
 
     const enerLabels=[
-      {v:1,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#7b8fa6;vertical-align:middle">${MOOD_FACES[1].svg}</svg>`,label:'Bajón'},
-      {v:2,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#aaaaba;vertical-align:middle">${MOOD_FACES[2].svg}</svg>`,label:'Neutro'},
+      {v:1,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#7b8fa6;vertical-align:middle">${MOOD_FACES[1].svg}</svg>`,label:'Con poca energía'},
+      {v:2,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#aaaaba;vertical-align:middle">${MOOD_FACES[2].svg}</svg>`,label:'Tranquilo/a'},
       {v:3,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#4cbf6e;vertical-align:middle">${MOOD_FACES[3].svg}</svg>`,label:'Bien'},
-      {v:4,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#28c040;vertical-align:middle">${MOOD_FACES[4].svg}</svg>`,label:'Re bien'},
-      {v:5,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#f4a320;vertical-align:middle">${MOOD_FACES[5].svg}</svg>`,label:'Encendido'},
+      {v:4,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#28c040;vertical-align:middle">${MOOD_FACES[4].svg}</svg>`,label:'Muy bien'},
+      {v:5,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#f4a320;vertical-align:middle">${MOOD_FACES[5].svg}</svg>`,label:'¡Con todas las pilas!'},
     ];
     const enerCounts=counts('q1_energia');
     renderBars('chartEnergia',enerLabels.map((o,i)=>({label:o.label,ico:o.ico,count:enerCounts.get(o.v)||0,color:i>=3?'green':(i<=1?'yellow':'')})));
