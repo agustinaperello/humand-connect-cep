@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS pulso_connect (
   q2_expectativa text,
   q3_networking text,
   q4_speaker text,
-  q5_tema text,
-  q6_frecuencia int CHECK (q6_frecuencia BETWEEN 1 AND 4),
+  q5_desafio text,
+  q6_tendencia text,
   q7_comentario text
 );
 

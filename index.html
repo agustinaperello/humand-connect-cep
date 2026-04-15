@@ -1114,7 +1114,7 @@ h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
       <div class="card kpi"><div class="label">Respuestas totales</div><div class="value" id="kpiTotal">0</div><div class="delta" id="kpiTotalDelta">esperando primer pulso…</div></div>
       <div class="card kpi"><div class="label">Sentimiento positivo</div><div class="value" id="kpiPos">—</div><div class="delta">energía 4 o 5 sobre 5</div></div>
       <div class="card kpi"><div class="label">Speaker más esperado</div><div class="value small" id="kpiSpeaker">—</div><div class="delta" id="kpiSpeakerPct">—</div></div>
-      <div class="card kpi"><div class="label">Tema más relevante</div><div class="value small" id="kpiTema">—</div><div class="delta" id="kpiTemaPct">—</div></div>
+      <div class="card kpi"><div class="label">Desafío más urgente</div><div class="value small" id="kpiDesafio">—</div><div class="delta" id="kpiDesafioPct">—</div></div>
     </div>
 
     <div class="dash-grid">
@@ -1139,14 +1139,14 @@ h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
         <div class="rank-list" id="chartSpeakers"></div>
       </div>
       <div class="card chart-card">
-        <h3>Temas relevantes para sus organizaciones</h3>
-        <div class="csub">Lo que más les importa hoy</div>
-        <div class="bars" id="chartTema"></div>
+        <h3>Mayores desafíos de gestión de personas</h3>
+        <div class="csub">Lo más urgente de resolver este año</div>
+        <div class="bars" id="chartDesafio"></div>
       </div>
       <div class="card chart-card">
-        <h3>Madurez en medición de cultura</h3>
-        <div class="csub">¿Qué tan seguido miden clima/engagement?</div>
-        <div class="bars" id="chartFrecuencia"></div>
+        <h3>Tendencias que más generan curiosidad</h3>
+        <div class="csub">Lo que las organizaciones quieren explorar</div>
+        <div class="bars" id="chartTendencia"></div>
       </div>
       <div class="card chart-card" style="grid-column:1 / -1">
         <h3>Comentarios en vivo 💬</h3>
@@ -1304,17 +1304,12 @@ const PULSO_QUESTIONS = [
   { key:'q4_speaker', type:'radio', title:'¿Cuál charla te genera más expectativa?',
     helper:'Solo una',
     options:['Patricia Jebsen','Mario Pergolini','Guillermo Barros Schelotto','Laura Leszman','Sandra Rossi','Joana Dominguez']},
-  { key:'q5_tema', type:'radio', title:'¿Qué tema es más relevante hoy para tu organización?',
-    helper:'Lo que más te está moviendo',
-    options:['IA en RRHH','Cultura basada en datos','Liderazgo','Employee Experience']},
-  { key:'q6_frecuencia', type:'scale4', title:'¿Qué tan seguido medís clima o engagement en tu empresa?',
-    helper:'Pensando hoy, no lo ideal',
-    options:[
-      {v:1, num:'1', l:'Nunca'},
-      {v:2, num:'2', l:'Algunas veces'},
-      {v:3, num:'3', l:'Frecuente'},
-      {v:4, num:'4', l:'Siempre'},
-    ]},
+  { key:'q5_desafio', type:'radio', title:'¿Cuál es tu mayor desafío de gestión de personas este año?',
+    helper:'Elegí el más urgente',
+    options:['Engagement','Comunicación interna','Atracción de talento','Productividad']},
+  { key:'q6_tendencia', type:'radio', title:'¿Qué tendencia te interesa más explorar?',
+    helper:'Lo que más te genera curiosidad',
+    options:['IA aplicada a RRHH','People analytics','Bienestar y salud mental']},
   { key:'q7_comentario', type:'textarea', title:'¿Querés dejarnos un comentario?',
     helper:'Opcional · va a aparecer en vivo en el dashboard del stand 👀',
     placeholder:'Escribí lo que quieras compartir…'},
@@ -1355,8 +1350,8 @@ const Pulso = (function(){
       q2_expectativa: answers.q2_expectativa ?? null,
       q3_networking: answers.q3_networking ?? null,
       q4_speaker: answers.q4_speaker ?? null,
-      q5_tema: answers.q5_tema ?? null,
-      q6_frecuencia: answers.q6_frecuencia ?? null,
+      q5_desafio: answers.q5_desafio ?? null,
+      q6_tendencia: answers.q6_tendencia ?? null,
       q7_comentario: (answers.q7_comentario || '').trim() || null,
     };
     const { error } = await sb.from('pulso_connect').insert(payload);
@@ -1555,9 +1550,9 @@ const Dashboard = (function(){
     document.getElementById('kpiSpeaker').textContent = sp ? sp.k : '—';
     document.getElementById('kpiSpeakerPct').textContent = sp ? `${sp.v} votos · ${pctOf(sp.v,total())}%` : '—';
 
-    const tm = topOf(counts('q5_tema'));
-    document.getElementById('kpiTema').textContent = tm ? tm.k : '—';
-    document.getElementById('kpiTemaPct').textContent = tm ? `${tm.v} votos · ${pctOf(tm.v,total())}%` : '—';
+    const tm = topOf(counts('q5_desafio'));
+    document.getElementById('kpiDesafio').textContent = tm ? tm.k : '—';
+    document.getElementById('kpiDesafioPct').textContent = tm ? `${tm.v} votos · ${pctOf(tm.v,total())}%` : '—';
 
     const enerLabels=[
       {v:1,ico:`<svg width="17" height="17" viewBox="0 0 32 32" style="color:#7b8fa6;vertical-align:middle">${MOOD_FACES[1].svg}</svg>`,label:'Con poca energía'},
@@ -1592,13 +1587,13 @@ const Dashboard = (function(){
         </div>`).join('');
     }
 
-    const temaOpts=['IA en RRHH','Cultura basada en datos','Liderazgo','Employee Experience'];
-    const temaCounts=counts('q5_tema');
-    renderBars('chartTema',temaOpts.map(o=>({label:o,count:temaCounts.get(o)||0,color:'purple'})));
+    const desafioOpts=['Engagement','Comunicación interna','Atracción de talento','Productividad'];
+    const desafioCounts=counts('q5_desafio');
+    renderBars('chartDesafio',desafioOpts.map(o=>({label:o,count:desafioCounts.get(o)||0,color:'purple'})));
 
-    const freqLabels=[{v:1,label:'Nunca',color:'yellow'},{v:2,label:'Algunas veces',color:''},{v:3,label:'Frecuente',color:'h400'},{v:4,label:'Siempre',color:'green'}];
-    const freqCounts=counts('q6_frecuencia');
-    renderBars('chartFrecuencia',freqLabels.map(o=>({label:o.label,count:freqCounts.get(o.v)||0,color:o.color})));
+    const tendOpts=['IA aplicada a RRHH','People analytics','Bienestar y salud mental'];
+    const tendCounts=counts('q6_tendencia');
+    renderBars('chartTendencia',tendOpts.map(o=>({label:o,count:tendCounts.get(o)||0,color:'h400'})));
 
     const cmts=responses.filter(r=>r.q7_comentario&&r.q7_comentario.trim()).slice().reverse();
     const elC=document.getElementById('chartComments');
