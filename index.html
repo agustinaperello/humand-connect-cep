@@ -444,19 +444,19 @@ h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
 .pulso-step .helper{color:var(--n800);font-size:13px;margin-bottom:24px}
 .pulso-actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
 
-.splash{text-align:center;padding:24px 8px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.splash .emoji{font-size:64px;line-height:1;margin-bottom:16px}
-.splash h2{font-size:24px;margin-bottom:10px}
-.splash p{color:var(--n800);margin:0 0 24px;max-width:400px;font-size:14px}
+.splash{text-align:center;padding:8px 8px 12px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.splash .emoji{font-size:56px;line-height:1;margin-bottom:12px}
+.splash h2{font-size:22px;margin-bottom:6px}
+.splash p{color:var(--n800);margin:0 0 16px;max-width:400px;font-size:13px;line-height:1.5}
 
 .splash-hero{
-  width:calc(100% + 56px);margin:-32px -28px 24px;
+  width:calc(100% + 56px);margin:-32px -28px 16px;
   border-radius:20px 20px 0 0;
   background:linear-gradient(135deg,#2c35a1 0%,#3851d8 40%,#6f93eb 100%);
-  padding:36px 24px 28px;text-align:center;
+  padding:24px 20px 20px;text-align:center;
 }
-.splash-hero img{height:36px;margin-bottom:6px;filter:brightness(0) invert(1)}
-.splash-hero .hero-sub{color:rgba(255,255,255,.85);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.splash-hero img{height:30px;margin-bottom:4px;filter:brightness(0) invert(1)}
+.splash-hero .hero-sub{color:rgba(255,255,255,.85);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
 
 .emoji-scale{display:flex;gap:5px;justify-content:space-between}
 .emoji-opt{
@@ -755,12 +755,12 @@ h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.3;letter-spacing:.2px}
 
 /* Splash icon — replaces big emoji in modal splash screens */
 .splash-icon{
-  width:72px;height:72px;border-radius:20px;
+  width:56px;height:56px;border-radius:16px;
   background:var(--h50);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;
+  margin:0 auto 12px;
 }
-.splash-icon svg{width:36px;height:36px;stroke:var(--h600)}
+.splash-icon svg{width:28px;height:28px;stroke:var(--h600)}
 .splash-icon.purple{background:var(--purple-l)}
 .splash-icon.purple svg{stroke:var(--purple)}
 .splash-icon.green{background:var(--green-l)}
@@ -1372,7 +1372,7 @@ const Pulso = (function(){
           <img src="assets/event/logo nuevo.png" alt="humand AI Connect">
           <div class="hero-sub">Cultural Engagement Pack</div>
         </div>
-        <div class="splash-icon" style="margin-top:20px">
+        <div class="splash-icon" style="margin-top:8px">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12h6M9 16h4"/></svg>
         </div>
         <h2>Pulso del evento</h2>
@@ -1458,7 +1458,7 @@ const Pulso = (function(){
           <img src="assets/event/logo nuevo.png" alt="humand AI Connect">
           <div class="hero-sub">Cultural Engagement Pack</div>
         </div>
-        <div class="splash-icon green" style="margin-top:20px">
+        <div class="splash-icon green" style="margin-top:8px">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <h2>¡Gracias!</h2>
@@ -1736,7 +1736,7 @@ const Trivia = (function(){
           <img src="assets/event/logo nuevo.png" alt="humand AI Connect">
           <div class="hero-sub">Cultural Engagement Pack</div>
         </div>
-        <div class="splash-icon purple" style="margin-top:20px">
+        <div class="splash-icon purple" style="margin-top:8px">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
         <h2>Trivia Humand</h2>
